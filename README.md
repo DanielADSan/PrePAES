@@ -1,6 +1,6 @@
-# PrePAES: Aplicación web educativa enfocada en la PAES de Matemáticas. React + Vite
+# PrePAES: Aplicación web educativa 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto de Título de Daniel Durán y Cristian Aguilera. Desarrollado con Vite + React 
 
 Currently, two official plugins are available:
 
