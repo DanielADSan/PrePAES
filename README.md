@@ -1,6 +1,6 @@
 # PrePAES: Aplicación web educativa
+![prepaesLogo](https://github.com/DanielADSan/PrePAES/assets/139416405/4c7888b5-cd22-4d09-ba4e-97c94a8e2331)
 
-![PrePAES Logo]([https://res.cloudinary.com/dohtxxlbe/image/upload/v1692331508/ImagenesPrePAES/prepaesLogo_ju7szn.png])
 
 PrePAES is an educational web application designed to help students effectively prepare for the Higher Education Admission Exam (PAES). This thesis project, developed by Daniel Durán and Cristian Aguilera, utilizes Vite and React technologies to offer an interactive and user-friendly platform for student preparation.
 
