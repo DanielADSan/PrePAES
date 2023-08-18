@@ -1,0 +1,268 @@
+
+
+.Contenedor{
+    display: flex;
+    flex-direction: column;
+     
+    margin: 2rem;
+    width: 100%;
+    /* 85 porciento de la pantalla*/
+    /* background-color: #ffffff; */
+   
+   
+ 
+   
+}
+.contenedorProgresoCrearEnsayo {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+}
+
+ 
+.form-check-input:checked {
+ 
+  background-color: #ffc107 !important;
+  border-color: #ccc;
+}
+.contenedorFormulario{
+    height: 70%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 15px;
+    position: relative;
+    bottom: 10px;
+    color: var(--dark);
+
+    background-color: var(--white);
+    /* background-color: #F1F416; */
+    width: 100%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.165) !important;
+}
+
+.Contenedor1{
+    width: 95%;
+    margin-bottom: 0px;
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 1REM;
+}
+
+
+
+.formulario1{
+    top: 0;
+    width: 80%;
+
+}
+
+.formCheck{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 100%;
+  
+    
+}
+
+
+
+td{
+  cursor: pointer;
+}
+textarea{
+  height: 150px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.form-guardar-ensayo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input-guardar-ensayo{
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 20px;
+
+}
+
+.Contenedor p{
+    display: flex;
+    
+    font-size:large;
+    
+}
+.is-invalid{
+    width: 100% !important;
+    padding: 1.5rem !important;
+    font-size: 20px !important; 
+}
+.boton{
+   
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    
+}
+.sinDatos{
+  color: var(--dark);
+}
+.boton .btn{ 
+    /* background: linear-gradient(37.35deg, #61B0DC 24.25%, rgba(97, 176, 220, 0.13) 88.46%); */
+    font-weight: 700;
+    transition: 0.5s;
+}
+
+.boton .btn:hover{
+    background: linear-gradient(37.35deg, #61B0DC 24.25%, rgba(97, 176, 220, 0.13) 88.46%);
+}
+
+
+
+.invalid-feedback{
+    display: flex !important;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    
+}
+
+.form-label{
+    font-weight: 700;
+}
+
+.d-block{
+    font-weight: 700;
+}
+
+/* input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+
+.select{
+    margin: auto;
+    width: 60%;
+}
+
+
+.tituloForm{
+    margin: auto;
+}
+
+.contenidoSwal{
+    font-size: 700;
+}
+
+.swal2-html-container{
+    font-weight: 700;
+}
+
+
+.form-check-input {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .form-check-input-cantidadPreguntas {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .form-check-label {
+    font-weight: normal;
+    margin-left: 1rem;
+    cursor: pointer;
+    
+    
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    
+    
+    }
+    .checkbox-categoria{
+        padding: 15px !important;
+    }
+    .checkbox-categoria .categoria{
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+  
+  .checkbox-container .form-check-input {
+    margin: 0;
+  }
+  
+  .cantidadPreguntasInput{
+    border-radius: 50% !important;
+    border: 1px solid #ced4da;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .cantidadPreguntas {
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+  
+  .cantidadPreguntas label:first-child {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+ .separator{
+    border-right: 2px solid #ccc;
+    height: 30px;
+    margin: 0 30px;
+    position: relative;
+    display: flex;
+    align-self: center;
+ }
+ .formCheck .checkbox-container label {
+    /* Estilos para las etiquetas label */
+    width: 80%;
+    display: flex;
+  }
+  .cantidadPreguntas-container{
+    margin-top: 1rem;
+    width: 90%;
+  }
+
+  .sub-title{
+    width: 100%;
+    border-bottom: 3px solid rgb(236, 180, 27);
+    font-size: 20px !important;
+    color: var(--dark);
+    
+  }
+  .arrow-forward-icon{
+    color: rgb(236, 180, 27);
+    font-weight: bold !important;
+  }
+
+  .botonQ{
+    background-color: #ffc107;
+  }

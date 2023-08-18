@@ -1,0 +1,130 @@
+.cuerpoLogin {
+  
+    
+    background: #0b0b0b;
+    height: 100vh;
+ 
+    color:var(--color-fuente);
+   
+
+  
+}
+.formulario {
+    background: #0b0b0b;
+    position: relative;
+
+    padding: 3px;
+    max-width: 900px;
+    top:10%;
+    box-shadow: 0 0 15px 5px #2b2a2a;
+}
+.hero_register{
+    text-align: center;
+    color: #ffffff;;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    
+   
+    
+}
+
+
+
+input[type="text"],
+input[type="password"]{
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    
+  
+}
+.input-contenedor{
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+}
+.icon{
+    min-width: 50px;
+    text-align: center;
+    color: #999;
+}
+.contenedorLogin{
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 20px;
+}
+.button{
+    border: none;
+    width: 80%;
+    color: #1a2537;
+    font-size: 20px;
+    background:  #F0AD4E;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s    ;
+    align-self: center;
+}
+.button:hover{
+    transition: 0.3s;
+    background: #1a2537;
+    color: white;
+}
+.pLogin{
+    text-align: center;
+    color: white;
+}
+.link{
+    text-decoration: none;
+      color: #d1d5dc;
+    font-weight: 600;
+}
+.link:hover{
+     color: #F0AD4E;
+}
+@media(min-width:300px)
+{
+    .formulario{
+        margin: auto;
+        max-width: 500px;
+        margin-top: 75px;
+        margin-bottom: 50px;
+        border-radius: 5px;
+        padding: 32px;
+    }
+
+    input[type="text"],
+input[type="password"]{
+    font-size: 20px;
+    width:100%;
+    
+    padding: 10px;
+    border: none;
+}
+}
+
+
+.nav_logo{
+    background: #fff;
+    width: 160px;
+    border-radius: 10px;
+    
+    
+}
+
+.nav_title{
+    text-align: center;;
+}
+
+label.error{
+    color:darkred;
+    margin-top: 1rem;
+    
+}
+
+
+input.error{
+    border: 2px solid darkred;
+    border-radius: 3px;
+}

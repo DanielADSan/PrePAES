@@ -1,0 +1,50 @@
+.containerUserData{
+    width: 800px;
+    color: var(--dark)!important;
+    display: flex;
+    padding: 2rem;
+    border-radius:10px ;
+    justify-content: center; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
+    background-color: var(--white);
+    flex-direction: row;
+    gap: 1rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.165) !important;
+}
+
+.containerSpace{
+    display: flex;
+    justify-content: left; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+.btn-perfil{
+    align-self: center;
+    margin-top: 2.5rem;
+    padding: 1rem;
+}
+
+.containerSpace h2{
+    font-size: 30px;
+}
+
+.containerData{
+    display: flex;
+    justify-content: center; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.containerData h4{
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+
+.password-icon {
+    cursor: pointer;
+    margin-top: -21px;
+    margin-left: 88%;
+}
+
+
