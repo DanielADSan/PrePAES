@@ -1,31 +1,44 @@
 # PrePAES: Aplicación web educativa
-![prepaesLogo](https://github.com/DanielADSan/PrePAES/assets/139416405/4c7888b5-cd22-4d09-ba4e-97c94a8e2331)
 
 
-PrePAES is an educational web application designed to help students effectively prepare for the Higher Education Admission Exam (PAES). This thesis project, developed by Daniel Durán and Cristian Aguilera, utilizes Vite and React technologies to offer an interactive and user-friendly platform for student preparation.
 
-## Features
+PrePAES es una aplicación web educativa diseñada para ayudar a los estudiantes a prepararse de manera efectiva para el Examen de Admisión a la Educación Superior (PAES) enfocado en Matemáticas. Este proyecto de título, desarrollado por Daniel Durán y Cristian Aguilera, utiliza las tecnologías Vite y React para ofrecer una plataforma interactiva y fácil de usar para la preparación de los estudiantes.
 
-- **Practice Questions:** Access a wide range of previous PAES exam questions to practice and enhance your skills.
+## Características
 
-- **Exam Simulations:** Take full PAES exam simulations in a real-like environment to evaluate your progress.
+- **Simulaciones de ensayos:** Realice simulaciones completas de ensayos PAES de Matemáticas en un entorno real para evaluar su progreso.
 
-- **Instant Feedback:** Receive immediate feedback after each question, allowing you to understand your strengths and weaknesses.
+- **Crear Ensayos:** Cree ensayos con la cantidad de preguntas y categorías que estime conveniente.
 
-- **Progress Tracking:** Keep track of your progress over time and observe how you've improved in different areas.
+- **Guardar Configuraciones:** Puede guardar sus configuraciones personalizadas para luego seguir practicando en esa area que desee reforzar.
 
-- **Study Resources:** Access supplementary study materials and tips to effectively tackle the PAES exam.
+- **Retroalimentación con Videos:** Se agregó a cada pregunta de los ensayos videos explicativos de creadores de contenidos y profesores .
+
+- **Método PrePAES(Proximamente):** Practica con el método PrePAES, ensayos que se adaptan a tu desempeño. 
 
 ## Screenshots
 
-_Insert some prominent application screenshots here._
+![mockups](https://github.com/DanielADSan/PrePAES/assets/139416405/b8590562-29aa-4082-b80a-acbdba580e8b)
 
-## How to Start the Project
+## Cómo iniciar el proyecto
 
-Follow these steps to start the project in your local environment:
+Siga estos pasos para iniciar el proyecto en su entorno local:
 
-1. **Clone the Repository:**
+1. **Clonar repositorio:**
 
 ```bash
 git clone https://github.com/your_username/PrePAES.git
 cd PrePAES
+```
+
+2. **Instalar dependencias:**
+
+```bash
+npm install
+```
+3. **Compilar Proyecto:**
+
+```bash
+npm run dev
+```
+
