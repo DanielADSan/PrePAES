@@ -7,9 +7,10 @@ import { Apiurl } from '../../../Services/apirest';
 import Navbar from '../../Navbar';
 import Sidebar from '../../Sidebar';
 import '../../../styles/historial.css'
-
+import Statistics from '../Resumen/Statistics';
+import '../../../styles/statistics.css';
 const PaginacionHistorial = () => {
-    const [selectedButton, setSelectedButton] = useState('Historial');
+    const [selectedButton, setSelectedButton] = useState('Resumen');
     const handleButtonClick = (button) => {
         setSelectedButton(button);
     }
@@ -53,10 +54,24 @@ const PaginacionHistorial = () => {
         <Sidebar sidebarActive={sidebarActive} ubicacionActual={"Progreso"} />
         <div className="content">
         <Navbar toggleSidebar={toggleSidebar} />
+        
         <main>
+   
         <div className='contenedorProgreso'>
+            
             <div className="container-enunciados">
+          
                 <div className="toggle-button">
+               
+                    <motion.button
+                        className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
+                        onClick={() => handleButtonClick('Resumen')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        Resumen
+                    </motion.button>
                     <motion.button
                         className={selectedButton === 'Historial' ? 'Historial active' : 'Historial'}
                         onClick={() => handleButtonClick('Historial')}
@@ -84,7 +99,10 @@ const PaginacionHistorial = () => {
                     />
                 </div>
             </div>
+            
             {error && <div className="sinDatos" style={{margin:'1rem'}}><h4>Aún no realizas un ensayo, ¿Que esperas?</h4></div>}
+            {selectedButton === 'Resumen' && (
+                <Statistics/>)}
             {selectedButton === 'Historial' && (
                 <Historial
                     items={historial}>

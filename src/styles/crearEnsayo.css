@@ -266,3 +266,17 @@ textarea{
   .botonQ{
     background-color: #ffc107;
   }
+
+  .errorEssayConfig{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--dark);
+  }
+  .popup-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }

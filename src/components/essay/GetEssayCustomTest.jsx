@@ -12,7 +12,7 @@ const GetEssayCustomTest = () => {
   const [ensayoSelected, setensayoSelected] = useState(JSON.parse(localStorage.getItem('formData')).ensayosArray );
   const [current_questions] = useState(JSON.parse(localStorage.getItem('formData')).cantidadPreguntas);
   const [post, setPost] = React.useState([]);
-  const [nombreEnsayo] = React.useState("");
+  const [nombreEnsayo] = React.useState("Ensayo Personalizado");
   const [iniciar, setIniciar] = React.useState(false);
   const [ensayosArray, setEnsayosArray] = useState([]);
   const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);

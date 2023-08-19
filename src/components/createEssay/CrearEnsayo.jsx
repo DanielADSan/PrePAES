@@ -34,6 +34,7 @@ function CrearEnsayo() {
   const [cantidadPreguntas, setCantidadPreguntas] = React.useState('');
   const [formData, setFormData] = React.useState(JSON.parse(localStorage.getItem('formData'))||{});
   const [showMostrarData, setShowMostrarData] = React.useState(false);
+  const [messageError, setMessageError] = React.useState('');
 
 
   useEffect(() => {
@@ -85,7 +86,7 @@ function CrearEnsayo() {
         type_math_ids: ensayosArray,
         users: userId,
         name: nombreEnsayo,
-        questionNumber: JSON.parse(localStorage.getItem('formData')).cantidadPreguntas
+        questionNumber: cantidadPreguntas
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -95,7 +96,8 @@ function CrearEnsayo() {
       mostrarData();
      
     } catch (error) {
-      console.log(error);
+      setMessageError(error.response.data.message[0]);
+      console.log(error.response.data.message[0]);
     }
   };
   useEffect(() => {
@@ -380,12 +382,12 @@ function CrearEnsayo() {
 
              
           </div>
-          <div className="row d-flex align-items-end justify-content-end">
+          <div className="row d-flex align-items-end justify-content-end mr-2">
             <button className="btn-accion m-1 " onClick={mostrarData} style={{width:"20%", height:"50px"}}> 
                       Realizar
             </button>  
             <button className="btn-accion m-1 " style={{width:"20%", height:"50px"}} onClick={()=>{setShowPopup(!showPopup);}}> 
-                      Guardar
+                      Guardar Configuración
             </button> 
           </div> 
           {showPopup && (
@@ -411,6 +413,11 @@ function CrearEnsayo() {
                                 placeholder="Ej: Números y Algebra"
                                 
                             ></input>
+                            {messageError.length !=0 &&(
+                              <div className="invalid-feedback d-block mt-2">
+                               <h5>{messageError}</h5>
+                              </div>
+                            )}
                             { !validarNombreEnsayo() &&  (
                             <div className="invalid-feedback d-block">
                               El nombre del ensayo debe tener entre 10 y 20 caracteres y solo puede contener letras, espacios y guiones.
