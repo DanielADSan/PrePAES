@@ -19,3 +19,85 @@
     align-items: center;
     justify-content: center;
 }
+
+.contenedorPrincipalEstadisticas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 36px;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.165);
+    border-radius: 5px;
+    gap: 60px;
+}
+
+
+.contenedorEstadisticas {
+    width: 100%;
+    height: 50%;
+}
+
+.grafico{
+    width: 100% !important;
+    height: 40% !important;
+}
+
+.calendario{
+    display: flex;
+    justify-content: space-around; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.date-picker p{
+    display: flex;
+    justify-content: left; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
+    align-items: flex-end;
+    flex-direction: row;
+    margin-bottom: -0.1%;
+    font-size: 90%;
+}
+
+.react-datepicker__input-container{
+    border-radius: 6px;
+    border-color: black;
+    border-width: 0.3px;
+    z-index: 2;
+}
+
+.react-datepicker__input-container input{
+    border-radius: 6px;
+    border-color: black;
+    border-width: 0.3px;
+    z-index: 2;
+}
+
+.custom-datepicker{
+    border: groove !important;
+    border-radius: 6px;
+    border-color: black;
+    border-width: 0.3px;
+    color: black !important;
+}
+
+.custom-datepicker.react-datepicker-ignore-onclickoutside{
+    border-radius: 6px;
+    border-color: black;
+    border: groove !important;
+    border-width: 0.3px;
+}
+
+.calendarIcon{
+    margin-bottom: 2%;
+    position: relative;
+    right: 15%;
+    z-index: 1;
+}
+
+
+
+
+
