@@ -3,10 +3,11 @@ import '../../styles/userProfile.css'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
 import axios from 'axios';
+import { Apiurl } from '../../../Services/apirest';
 
-const ApiurlUsersRetrieveUpdateDestroy = 'http://127.0.0.1:8000/user/'
-const ApiurlChangePassword = 'http://127.0.0.1:8000/api/change_password_profile/'
-const ApiUserData = 'http://127.0.0.1:8000/api/profile/'
+const ApiurlUsersRetrieveUpdateDestroy = Apiurl+'user/'
+const ApiurlChangePassword = Apiurl+'api/change_password_profile/'
+const ApiUserData = Apiurl+'api/profile/'
 
 const UserProfile = () => {
     const token = localStorage.getItem("token");
