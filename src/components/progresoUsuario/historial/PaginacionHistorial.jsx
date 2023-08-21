@@ -9,6 +9,7 @@ import Sidebar from '../../Sidebar';
 import '../../../styles/historial.css'
 import Statistics from '../Resumen/Statistics';
 import '../../../styles/statistics.css';
+import Estadisticas from '../estadisticas/Estadisticas';
 const PaginacionHistorial = () => {
     const [selectedButton, setSelectedButton] = useState('Resumen');
     const handleButtonClick = (button) => {
