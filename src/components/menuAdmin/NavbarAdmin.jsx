@@ -1,8 +1,8 @@
 import React from "react";
-import avatar from '../images/avataaars2.png'
-import user from '../images/user.png'
+import avatar from '../../images/avataaars2.png'
+import user from '../../images/user.png'
 
-const Navbar = ({ toggleSidebar }) => {
+const NavbarAdmin = ({ toggleSidebar }) => {
     const handleMenuClick = () => {
         toggleSidebar(prevState => !prevState);
       };
@@ -24,14 +24,14 @@ const Navbar = ({ toggleSidebar }) => {
           <div class="profile">
                     <div className="infoo">
                         <p>Hola, <b>{localStorage.getItem('username')}</b></p>
-                        <small className="text-muted">Estudiante</small>
+                        <small className="text-muted">Administrador</small>
                     </div>
                     <div class="profile-photo">
-                        <img src={user}/>
+                        <img src={avatar}/>
                     </div>
                 </div>
     
         </nav>
     );
-    }
-export default Navbar;
+}
+export default NavbarAdmin;

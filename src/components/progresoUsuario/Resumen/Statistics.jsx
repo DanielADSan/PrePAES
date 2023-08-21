@@ -15,7 +15,10 @@ const Statistics = () => {
         EssayAverageBestData();
         FiveEssayData();
     }, []);
-
+    const [essayScoreRecent, setEssayScoreRecent] = useState(0);
+    const [essayAverageScore, setEssayAverageScore] = useState(0);
+    const [essayScoreBest, setEssayScoreBest] = useState(0);
+    const [five_essay_ul , setFive_essay_ul] = useState([]);
     async function EssayData() {
         const token = localStorage.getItem("token");
 
@@ -25,12 +28,12 @@ const Statistics = () => {
             }
         });
 
-       
-        const essayScoreRecent = document.getElementById("essayScoreRecent");
    
-
-       
-        essayScoreRecent.textContent = essayMostRecentData.data.puntaje
+   
+        //dos decimales solo si es que tiene decimales = toFixed(2) como no agregar los decimales si es un numero entero = 
+            
+            setEssayScoreRecent(essayMostRecentData.data.puntaje.toFixed(0))
+   
       
 
     }
@@ -43,16 +46,8 @@ const Statistics = () => {
                 Authorization: `Bearer ${token}`
             }
         });
-
-        const essayAverageScore = document.getElementById("essayAverageScore");
-
-       
-        const essayScoreBest = document.getElementById("essayScoreBest");
-       
-        essayAverageScore.textContent = essayMostRecentData.data.average
- 
-        essayScoreBest.textContent = essayMostRecentData.data.bestScore.puntaje
-     
+        setEssayAverageScore(essayMostRecentData.data.average.toFixed(0)) 
+        setEssayScoreBest(essayMostRecentData.data.bestScore.puntaje.toFixed(0))
 
     }
 
@@ -65,17 +60,8 @@ const Statistics = () => {
             }
         });
 
-        const five_essay_ul = document.getElementById('five_essay_ul');
-        console.log(essayFiveRecentData)
-
-        five_essay_ul.innerHTML = ''
-
-        essayFiveRecentData.data.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item.name + ' ' + item.date + ' ' + item.puntaje; // Ajusta esto según la estructura de tus datos
-            li.className = 'five_essay_li'
-            five_essay_ul.appendChild(li);
-        });
+        setFive_essay_ul(essayFiveRecentData.data)
+        console.log(five_essay_ul)
 
     }
 
@@ -85,17 +71,9 @@ const Statistics = () => {
                 <ul className='insights'>
                     <li>
                         <i class='resumen bx bx-calendar-check'></i>
-                        <span className='info'>
-                           
-
-                      
-
-
-                            <h3 id='essayScoreRecent'></h3>
-
-                            <p href="username">Ensayo más reciente</p>
-                      
-
+                        <span className='info'>         
+                            <h3>{essayScoreRecent}</h3>
+                            <p href="username">Ensayo más reciente</p>                    
                         </span>
                     </li>
                     <li>
@@ -103,19 +81,14 @@ const Statistics = () => {
                         <span className='info'>
                             
 
-                            <h3 id='essayAverageScore'></h3>
+                            <h3>{essayAverageScore}</h3>
                             <p href="username">Promedio de puntajes</p>
                         </span>
                     </li>
                     <li>
                     <i class='resumen bx bxs-arrow-to-top' ></i>
                         <span className='info'>
-                           
-
-                            <p id='essayNameBest'></p>
-
-
-                            <h3 id='essayScoreBest'></h3>
+                            <h3>{essayScoreBest}</h3>
                             <p href="username">Puntaje máximo</p>
 
                         </span>
@@ -124,10 +97,10 @@ const Statistics = () => {
                 <div className='bottom-data'>
                     <div className='orders'>
                         <div className='header'>
-                            <i class='bx bx-receipt'></i>
+                            <i class='bx bx-stats'></i>
                             <h3>Evolución de puntaje</h3>
                             <i class='bx bx-filter'></i>
-                            <i class='bx bx-search'></i>
+                  
                         </div>
                         <div className='containerGraphicData'>
                             <div className='graphicData'>
@@ -136,36 +109,32 @@ const Statistics = () => {
                         </div>
                         
                     </div>
-                    <div class="reminders">
+                    <div class="orders">
                     <div class="header">
-                        <i class='bx bx-note'></i>
+                    <i class='bx bx-history' ></i>
                         <h3>Ultimos ensayos</h3>
                         <i class='bx bx-filter'></i>
-                        <i class='bx bx-plus'></i>
+            
                     </div>
-                    <ul class="task-list">
-                        <li class="completed">
-                            <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>Start Our Meeting</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>Analyse Our Site</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <div class="task-title">
-                                <i class='bx bx-x-circle'></i>
-                                <p>Play Footbal</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre ensayo</th>
+                                <th>Fecha</th>
+                                <th>Puntaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {five_essay_ul.length !== 0 &&  five_essay_ul.map((ensayo, index) => (
+                                <tr key={index}>
+                                    <td><p>{ensayo.name}</p></td>
+                                    <td>{ensayo.date}</td>
+                                    <td>{ensayo.puntaje}</td>
+                                </tr>
+                            ))}    
+                        </tbody>
+                    </table>
                 </div>
                 </div>
             

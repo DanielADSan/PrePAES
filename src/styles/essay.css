@@ -130,8 +130,8 @@
   }
   .navigation-container {
     margin-top: 1rem !important;
-    width: 90%;
-    height: 80px;
+    width: 100%;
+    height: 90px;
     border-radius: 2px;
     background-color: var(--white);
     overflow-x: scroll;
@@ -147,7 +147,7 @@
   }
   
   .navigation-container::-webkit-scrollbar {
-    height: 10px;
+    height:10px;
    
   }
   .navigation-items {

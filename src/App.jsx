@@ -11,6 +11,7 @@ import UserProfile from './components/Profile/UserProfile';
 import CrearEnsayo from './components/createEssay/CrearEnsayo';
 import GetEssayCustom from './components/essay/GetEssayCustom';
 import GetEssayCustomTest from './components/essay/GetEssayCustomTest';
+import Questions from './components/menuAdmin/Questions';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="CrearEnsayo" element={<CrearEnsayo/>} />
           <Route path="CrearEnsayo/:tema/:id" element={<GetEssayCustom/>} />
           <Route path="CrearEnsayoTest/:tema/:id" element={<GetEssayCustomTest/>} />
+          <Route path="Preguntas" element={<Questions/>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,0 +1,28 @@
+
+const tipsPAES = [
+    "Duerme bien la noche anterior para estar descansado y alerta durante la prueba.",
+    "Llega temprano al lugar de la prueba para evitar retrasos y nerviosismo.",
+    "Lleva todo el material necesario para la prueba, incluyendo lápices, goma de borrar, regla y calculadora.",
+    "Lee cuidadosamente las instrucciones y las preguntas de la prueba antes de comenzar.",
+    "Organiza tu tiempo durante la prueba, dividiéndolo de manera equilibrada entre las distintas secciones.",
+    "Responde primero las preguntas que te resulten más fáciles para ganar confianza y seguridad.",
+    "No te quedes mucho tiempo en una pregunta difícil, pasa a la siguiente y regresa después si te queda tiempo.",
+    "Mantén la calma y la concentración durante la prueba, evitando distraerte o preocuparte por el tiempo.",
+    "No te compares con otros estudiantes durante la prueba, concéntrate en tu propio rendimiento.",
+    "Si te quedas en blanco en una pregunta, pasa a la siguiente y regresa después si te queda tiempo.",
+    "Lee cuidadosamente cada pregunta y respóndela con atención y precisión.",
+    "Aprovecha el tiempo disponible para repasar tus apuntes y estudiar los temas que te resulten más difíciles.",
+    "No te quedes con dudas, pregunta a tus profesores o compañeros de estudio antes de la prueba.",
+    "Aprende a identificar el tipo de pregunta y la forma en que se presenta, para responder con mayor rapidez y seguridad.",
+    "Practica con pruebas anteriores para familiarizarte con el formato y el contenido de la prueba.",
+    "Organiza tus ideas y responde de manera clara y coherente, evitando confusiones o ambigüedades.",
+    "Escribe con letra legible y clara, para evitar errores de interpretación o comprensión.",
+    "Utiliza la calculadora solo si es necesario y si conoces su funcionamiento, para evitar errores y pérdida de tiempo.",
+    "Presta atención a las palabras clave de cada pregunta, para entender lo que se te está pidiendo.",
+    "No pierdas tiempo en detalles irrelevantes o que no aportan a la respuesta de la pregunta.",
+    "No te rindas si no logras responder una pregunta, sigue adelante y regresa después si te queda tiempo.",
+    "Haz pausas regulares para descansar tus ojos y tu mente, evitando la fatiga y el cansancio.",
+    "Mantén una postura cómoda y erguida durante la prueba, para evitar dolores o molestias.",
+    "Escucha con atención las indicaciones del supervisor de la prueba y sigue las normas y reglas establecidas.",
+];
+export default tipsPAES;

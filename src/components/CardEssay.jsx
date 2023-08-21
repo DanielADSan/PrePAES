@@ -6,6 +6,7 @@ import numeros from "../images/numeros.png";
 import probabilidad from "../images/probabilidad.png";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import TipsPAES from "./paesHelps/TipsPAES";
 
 const CardEssay = () => {
   const token = localStorage.getItem("token");
@@ -82,7 +83,8 @@ const CardEssay = () => {
                   <i class='bx bx-x exitPopup' onClick={()=>{setShowPopup(false)}}></i>
                 </div> 
                   <h1 style={{ fontWeight: "bold" }}>{essayTemario === "numeros" ? "Números" : essayTemario === "algebra" ? "Álgebra y Funciones" : essayTemario === "geometria" ? "Geometría" : essayTemario === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}</h1>
-                  <p className="mt-3">Tendrá a su disposición 20 minutos para contestar el ensayo, podrá navegar entre preguntas y/o omitirlas.</p>
+                  <p style={{fontSize:'20px', marginTop:'1rem'}}>Tendrá a su disposición <b>20 minutos</b> para contestar el ensayo de <b>10 preguntas</b>, podrá navegar entre preguntas y por el momento <b>no puedes omitirlas</b>. </p>
+            
                   <button className="btn btn-outline-dark btn-lg m-2" onClick={() => { IniciarEnsayo(essayId, essayTemario, essayTemario) }}>Iniciar Ensayo</button>
                 </div>
               </div>

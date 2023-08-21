@@ -47,7 +47,7 @@ function CrearEnsayo() {
   function validarNombreEnsayo() {
     const nombre = nombreEnsayo.trim(); // Obtiene el valor y elimina espacios en blanco al principio y al final
   
-    const patron = /^[a-zA-Z -]{10,20}$/; // Expresión para validar el nombre, que sea solo caracteres y de largo entre 10 y 20
+    const patron = /^[a-zA-Z0-9 -]{10,20}$/;// Expresión para validar el nombre, que sea solo caracteres y de largo entre 10 y 20
   
     if (!patron.test(nombre)) {
       return false; // El nombre no cumple con los requisitos
@@ -79,6 +79,22 @@ function CrearEnsayo() {
      });
   } 
   async function saveEssayCustom (nombreEnsayo, ensayoSelected) {
+    if (!validarNombreEnsayo()) {
+      return;
+    }
+  
+    if(cantidadPreguntas === ''){
+      setMessageError('Debes seleccionar la cantidad de preguntas');
+      return;
+    }
+    if(ensayosArray.length <2){
+      setMessageError('Debes seleccionar al menos dos temas');
+      return;
+    }
+    if(nombreEnsayo === ''){
+      setMessageError('Debes ingresar un nombre para el ensayo');
+      return;
+    }
     const userId = parseInt(localStorage.getItem("user_id"));
     const token = localStorage.getItem("token");
     try {
@@ -93,7 +109,7 @@ function CrearEnsayo() {
         }
       });
       localStorage.setItem("essayTemario", nombreEnsayo);
-      mostrarData();
+      navigate('../Ensayos')
      
     } catch (error) {
       setMessageError(error.response.data.message[0]);

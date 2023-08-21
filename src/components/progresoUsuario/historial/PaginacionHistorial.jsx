@@ -81,6 +81,7 @@ const PaginacionHistorial = () => {
                     >
                         Historial
                     </motion.button>
+                    {/*
                     <motion.button
                         className={selectedButton === 'Estadísticas' ? 'Estadísticas active' : 'Estadísticas'}
                         onClick={() => handleButtonClick('Estadísticas')}
@@ -89,7 +90,7 @@ const PaginacionHistorial = () => {
                         transition={{ duration: 0.2 }}
                     >
                         Estadísticas
-                    </motion.button>
+                    </motion.button> */}
                     <motion.div
                         className="indicator"
                         layoutId="indicator"
@@ -100,7 +101,7 @@ const PaginacionHistorial = () => {
                 </div>
             </div>
             
-            {error && <div className="sinDatos" style={{margin:'1rem'}}><h4>Aún no realizas un ensayo, ¿Que esperas?</h4></div>}
+            {error && <div className="sinDatos" style={{margin:'1rem'}}><h4>Aún no realizas un ensayo ...</h4></div>}
             {selectedButton === 'Resumen' && (
                 <Statistics/>)}
             {selectedButton === 'Historial' && (
@@ -108,7 +109,7 @@ const PaginacionHistorial = () => {
                     items={historial}>
                 </Historial>
             )}
-        
+                
         </div>
         </main>
         </div>

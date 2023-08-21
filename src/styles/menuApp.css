@@ -384,6 +384,7 @@ body{
     grid-gap: 24px;
     cursor: pointer;
     min-width: 300px;
+    max-width: 900px;
     transition: all 0.3s ease;
 }
 .content main .insights li:hover{
@@ -508,17 +509,19 @@ body{
     font-size: 13px;
     text-align: left;
     border-bottom: 1px solid var(--grey);
+    padding-left: 1rem;
 }
 
 .content main .bottom-data .orders table td{
-    padding: 16px 0;
+    padding: 16px 10px;
+    padding-left: 1rem;
 }
 
 .content main .bottom-data .orders table tr td:first-child{
     display: flex;
     align-items: center;
     grid-gap: 12px;
-    padding-left: 6px;
+    padding-left: 15px;
 }
 
 .content main .bottom-data .orders table td img{

@@ -87,7 +87,7 @@ export default function LinesChart() {
     const labels = essayInfo
     .filter(item => item.puntaje >= 100) // Filtrar puntajes mayores a 100
     .map(item => item.date)
-    .reverse();
+    .reverse() ;
 
 
     const puntaciones = essayInfo

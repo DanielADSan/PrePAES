@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef  } from "react";
 import "katex/dist/katex.min.css";
 import Box from "@mui/material/Box";
 import { red, green } from "@mui/material/colors";
@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 const UrlSubmitAnswers  = Apiurl +"submit_answers/";
 
 function Essay(props) {
+  const navigationContainerRef = useRef(null);
   const navigate = useNavigate();  // Get the navigate function
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -229,6 +230,12 @@ function Essay(props) {
   }
   function handleClickNav(j){
     setPreguntaActual(j);
+     // Ajustar el scroll del contenedor
+     if (navigationContainerRef.current) {
+      const itemWidth = navigationContainerRef.current.querySelector('.navigation-item').offsetWidth;
+      const scrollOffset = itemWidth * j;
+      navigationContainerRef.current.scrollLeft = scrollOffset;
+    }
   }
   let puntajeFinal = 0;
   let errores=0;
@@ -552,7 +559,7 @@ function Essay(props) {
       </div>
     </div>
   )}
-  <div className="navigation-container">
+  <div className="navigation-container" ref={navigationContainerRef}>
       <div className="navigation-items">
         {ensayo.map((item,j) => (
           <div className= {`navigation-item ${j === preguntaActual ? 'selected-nav' : ''} ${selectedAnswers[j] ? 'answered' : ''} `} key={j}  onClick={() =>handleClickNav(j)}>

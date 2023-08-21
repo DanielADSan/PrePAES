@@ -18,8 +18,12 @@ const CardEssayCustom = () => {
   const [essayTemario, setEssayTemario] = useState("");
   const [essayCurrent, setEssayCurrent] = useState(0);
   const [essayType, setEssayType] = useState([]);
+  const [essayTypeOficial, setEssayTypeOficial] = useState([]); // [1,2,3,4,5,6,7,8,9,10
+  const [essayLastType, setEssayLastType] = useState([]);
   const [flag, setFlag] = useState(false);
   const [formData, setFormData] = React.useState({});
+  const [firstEssayType, setFirstEssayType] = useState([]);
+  const [shouldShowError, setShouldShowError] = useState(false);
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
     if (formData.cantidadPreguntas) {
@@ -32,9 +36,20 @@ const CardEssayCustom = () => {
     setEssayId(essayId);
     setEssayTemario(essayName);
     setEssayCurrent(EssayCurrent);
-    setEssayType(essayType);
-  
+    setFirstEssayType(essayType[0]);
+    setEssayType(essayType.slice(1, essayType.length - 1));
+    setEssayLastType(essayType[essayType.length - 1]);
+    //recorrer esssayType y guardar en un array los id de los tipos de matematicas 
+    const essayTypeArray = essayType.map((types) => {
+      return (
+        types.math_type_id
+      )
+    })
+    setEssayTypeOficial(essayTypeArray);
+    console.log(essayType)
     setShowPopup(!showPopup);
+
+    
   }
   const [essaysConfig, setEssaysConfig] = useState([]);
   useEffect(() => {
@@ -46,7 +61,7 @@ const CardEssayCustom = () => {
       .then(res => {
         console.log(res.data)
         setEssaysConfig(res.data);
-        
+        setShouldShowError(true);
 
       })
   }, []);
@@ -97,9 +112,10 @@ const CardEssayCustom = () => {
       console.log(error);
     }
   }
+  const showErrorMessage = essaysConfig.length === 0;
   return (
     <>
-      {!essaysConfig.length && (
+      {shouldShowError && essaysConfig.length === 0 && (
         <div className="errorEssayConfig">
           <h4>Aun no se Crean ensayos personalizados</h4>
           <img src={botPrePAES} style={{ width: '170px' }} />
@@ -126,18 +142,15 @@ const CardEssayCustom = () => {
               <i class='bx bx-x exitPopup' onClick={() => { setShowPopup(false) }}></i>
             </div>
             <h1 style={{ fontWeight: "bold" }}>{essayTemario}</h1>
-            <ul className="mt-3 mb-3">
-              <li>Preguntas: {essayCurrent}</li>
-              <li>Temario: {essayTemario}</li>
-              <li>Categorías: {essayType.map((types)=>{
+            <p style={{fontSize:'20px', marginTop:'1rem'}}>Este ensayo consta de <b>{essayCurrent}</b> preguntas y el temario será de: <b>{firstEssayType.math_type_type}{essayType.map((types)=>{
                 return(
-                  <span>{types.math_type_type} </span>
+                  <span>, {types.math_type_type}</span>
                 )
-              })}</li>
-            </ul>
+              })} y {essayLastType.math_type_type}.</b></p>
+
             <h3>¿Desea iniciar el ensayo?</h3>
             <div className="popup-buttons">
-              <button className="btn btn-outline-dark btn-lg m-2" onClick={() => { IniciarEnsayo(essayCurrent, essayTemario, essayType) }}>Iniciar Ensayo</button>
+              <button className="btn btn-outline-dark btn-lg m-2" onClick={() => { IniciarEnsayo(essayCurrent, essayTemario, essayTypeOficial) }}>Iniciar Ensayo</button>
               <button className="btn btn-outline-danger btn-lg m-2" onClick={() => { DeleteEssay(essayId) }}>Eliminar Configuracion</button>
             </div>
           </div>

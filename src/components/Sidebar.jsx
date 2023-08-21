@@ -75,17 +75,17 @@ toggler.addEventListener('change', function () {
 
   return (
     <div className={`sidebar${sidebarActive ? '' : ' close'}`}>
-      <a href="#" className="logo">
+      <a href="#"onClick={()=>{navigate(`/Ensayos`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}} className="logo">
         <i className='bx'><img src={logoPrePAES} alt="" /></i>
         <div className="logo-name"><span>Pre</span>PAES</div>
       </a>
       <ul className="side-menu">
-      <li className={ubicacionActual === "Ensayos" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Ensayos`)}}><i className='bx bxs-dashboard'></i>Ensayos</a></li>
+      <li className={ubicacionActual === "Ensayos" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Ensayos`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i className='bx bxs-dashboard'></i>Ensayos</a></li>
       {/*<li className={ubicacionActual === "Metodo PrePAES" ? "active" : ""}><a href="#"><i className='bx bx-receipt'></i>Metodo PrePAES</a></li>*/}
-      <li className={ubicacionActual === "Crear ensayo" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/CrearEnsayo`)}}><i className='bx bx-analyse'></i>Crear ensayo</a></li>
-      <li className={ubicacionActual === "Progreso" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Progreso`)}}><i className='bx bx-history'></i>Progreso</a></li>
-      <li className={ubicacionActual === "Perfil" ? "active" : ""}><a href="#"onClick={()=>{navigate(`/Perfil`)}}><i className='bx bx-group'></i>Perfil</a></li>
-      <li className={ubicacionActual === "Puntajes de corte" ? "active" : ""}><a href="#"><i className='bx bx-cut'></i>Puntajes de corte</a></li>
+      <li className={ubicacionActual === "Crear ensayo" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/CrearEnsayo`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i className='bx bx-analyse'></i>Crear ensayo</a></li>
+      <li className={ubicacionActual === "Progreso" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Progreso`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i className='bx bx-history'></i>Progreso</a></li>
+      <li className={ubicacionActual === "Perfil" ? "active" : ""}><a href="#"onClick={()=>{navigate(`/Perfil`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i className='bx bx-group'></i>Perfil</a></li>
+      
     </ul>
       <ul className="side-menu">
         <li>

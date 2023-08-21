@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect}from "react";
 import '../../styles/home.css'
 import '../../styles/bootstrap.css'
 import '../../styles/responsive.css'
@@ -12,8 +12,13 @@ import progreso from '../../images/progreso.png'
 import jovenes from '../../images/jovenes.png'
 import inicioPAES from '../../images/inicioPAES.png'
 import logoPrePAES from '../../images/prepaesLogo.png'
+import axios from "axios"; 
+import { Apiurl } from '../../Services/apirest';
 
 const Home = () => {
+    useEffect(() => {
+        axios.get(Apiurl + "/home")
+    }, [])
     return (
         <div style={{ width: '100%', backgroundColor: '#f8f8f8', fontFamily: '"Roboto", sans-serif', lineHeight: '1.5' }}>
             <div className="hero_area">
@@ -62,11 +67,11 @@ const Home = () => {
                                                 <p>
                                                     Nuestra plataforma está diseñada para ayudarte a preparar y alcanzar un excelente desempeño en la PAES de matemáticas.</p>
                                                 <div class="btn-box">
-                                                    <a href="" class="btn-1">
+                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSedb1BwmEtJ2tuxyq8UUc9c60OsoWg1zKDN19qaGLMXzkDxJA/viewform?usp=sf_link" class="btn-1">
                                                         Registrarse
                                                     </a>
-                                                    <a href="#contact" class="btn-2">
-                                                        Contáctanos
+                                                    <a href="/Login" class="btn-2">
+                                                        Iniciar Sesión
                                                     </a>
                                                 </div>
                                             </div>
@@ -96,7 +101,7 @@ const Home = () => {
                     <div className="heading_container heading_center">
                         <h2>
                             ¿Qué nos diferencia de las otras
-                            <span className="text-muted"> plataformas</span>?
+                         plataformas?
                         </h2>
                     </div>
                 </div>

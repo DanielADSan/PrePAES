@@ -2,10 +2,11 @@ import React, { Component, useRef,useState }  from 'react';
 import axios from 'axios';
 import {Apiurl} from '../../Services/apirest'
 import '../../styles/Login.css'
+import { useNavigate } from 'react-router-dom';
 
 class Login extends React.Component{
     
-
+    
     state = {
         form: {
           "email": "",
@@ -34,9 +35,9 @@ class Login extends React.Component{
             console.log('si funciona')
         }
       }
-
-    manejadorBoton=()=>{
       
+    manejadorBoton=()=>{
+        
         let url = Apiurl + 'api/login/';
         axios.post(url, this.state.form)
             .then(response => {
@@ -44,14 +45,18 @@ class Login extends React.Component{
                 if (response.data.status === "ok") {
                 console.log(response);
                 localStorage.setItem("token", response.data.token.access);
+                localStorage.setItem("is_admin", response.data.is_admin);
                 localStorage.setItem("user_id", response.data.user_id);
                 localStorage.setItem("username", response.data.username);
                 localStorage.setItem("date_login", Date.now());
                 localStorage.setItem("email", this.state.form.email);
                 axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token.access}`;
            
-              
-                window.location.href = "./Ensayos";
+                if(response.data.is_admin === true){
+                    window.location.href = "/Preguntas";
+                }
+                else
+                    window.location.href = "/Ensayos";
             
              
                 } else {
@@ -104,7 +109,7 @@ class Login extends React.Component{
                 <header className="header_section" style={{fontFamily:'Roboto, sans-serif'}}>
                     <div className="container-fluid">
                         <nav className="navbar navbar-expand-lg custom_nav-container ">
-                            <a className="navbar-brand" href="#">
+                            <a className="navbar-brand" href="./">
                                <span>PRE</span><span style={{ color: 'orange' }} >PAES</span>
                             </a>
 
