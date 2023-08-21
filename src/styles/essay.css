@@ -107,7 +107,7 @@
   .selected:focus {
     outline: none !important;
   }
-  .css-1wc0u5o-MuiPaper-root-MuiAccordion-root{
+  .accordion-item{
     background-color: var(--white)!important;
     color: var(--dark)!important;
   }

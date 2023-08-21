@@ -350,13 +350,14 @@ function Essay(props) {
             </div>
 
             <div className="accordion mt-4" id="accordionExample">
-              <div>
+              <div className="acordion-result">
                 {ensayo.map((item, j) => (
                   <Accordion
                     disableGutters
                     key={j}
                     expanded={expanded === j}
                     onChange={handleChange(j)}
+                    className="accordion-item"
                   >
                     <AccordionSummary
                       expandIcon={
