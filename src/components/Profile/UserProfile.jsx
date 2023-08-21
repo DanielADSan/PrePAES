@@ -3,7 +3,7 @@ import '../../styles/userProfile.css'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
 import axios from 'axios';
-import { Apiurl } from '../../../Services/apirest';
+import { Apiurl } from '../../Services/apirest';
 
 const ApiurlUsersRetrieveUpdateDestroy = Apiurl+'user/'
 const ApiurlChangePassword = Apiurl+'api/change_password_profile/'
