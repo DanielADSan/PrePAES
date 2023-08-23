@@ -4,11 +4,12 @@ import Navbar from '../Navbar'
 import CardEssay from '../CardEssay';
 import CardEssayCustom from './CardEssayCustom';
 import '../../styles/menuApp.css'
+import '../../styles/Spinner.css'
 
 const MenuUser = () => {
     
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive"))||false);
- 
+    
     const toggleSidebar = () => {
         setSidebarActive(prevState => !prevState);
     };
@@ -26,6 +27,7 @@ const MenuUser = () => {
                     <h1>Ensayos Predeterminados</h1>
                 </div>
                 </div>
+                
                 <CardEssay />
                 <div className="header" style={{marginTop:'3rem'}}>
                 <div className="left">

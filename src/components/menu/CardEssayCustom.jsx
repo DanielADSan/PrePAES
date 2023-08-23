@@ -24,6 +24,7 @@ const CardEssayCustom = () => {
   const [formData, setFormData] = React.useState({});
   const [firstEssayType, setFirstEssayType] = useState([]);
   const [shouldShowError, setShouldShowError] = useState(false);
+  const [spinner, setSpinner] = useState(true);
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
     if (formData.cantidadPreguntas) {
@@ -62,6 +63,7 @@ const CardEssayCustom = () => {
         console.log(res.data)
         setEssaysConfig(res.data);
         setShouldShowError(true);
+        setSpinner(false);
 
       })
   }, []);
@@ -120,6 +122,9 @@ const CardEssayCustom = () => {
           <h4>Aun no se Crean ensayos personalizados</h4>
           <img src={botPrePAES} style={{ width: '170px' }} />
         </div>
+      )}
+      {spinner && (
+        <div className="spinner loading"></div>
       )}
       <ul className="insights">
         {essaysConfig.map((essay) => (

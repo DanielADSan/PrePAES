@@ -13,7 +13,8 @@ class Login extends React.Component{
           "password": "",
         },
         error:false,
-        errorMsg:""
+        errorMsg:"",
+        spinner: false,
       };
 
     manejadorSubmit=e=>{
@@ -39,6 +40,9 @@ class Login extends React.Component{
     manejadorBoton=()=>{
         
         let url = Apiurl + 'api/login/';
+        this.setState({
+            spinner : true,
+        })
         axios.post(url, this.state.form)
             .then(response => {
                 console.log(response.data.token.access);
@@ -51,7 +55,9 @@ class Login extends React.Component{
                 localStorage.setItem("date_login", Date.now());
                 localStorage.setItem("email", this.state.form.email);
                 axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token.access}`;
-           
+                this.setState({
+                    spinner : false,
+                })    
                 if(response.data.is_admin === true){
                     window.location.href = "/Preguntas";
                 }
@@ -155,6 +161,8 @@ class Login extends React.Component{
                                     {this.state.errorMsg}
                                 </div>
                             }
+                            {this.state.spinner === true &&
+                            <div className="spinner loading" style={{marginTop:'1rem'}}></div>}
                             <p className='pLogin mt-1'>¿No tienes una cuenta? <a className="link" href="https://docs.google.com/forms/d/e/1FAIpQLSedb1BwmEtJ2tuxyq8UUc9c60OsoWg1zKDN19qaGLMXzkDxJA/viewform?usp=sf_link" >Solicitar acceso</a></p>
                         </div>
         </form>

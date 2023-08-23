@@ -11,8 +11,9 @@ const GetEssay = () => {
   const tema = location.pathname.split('/')[2]; // Obtenemos el valor del tercer segmento de la URL
 
   const ApiUrl = Apiurl + "questions_alternative/?subject=" + tema;
-  const [post, setPost] = React.useState(null);
+  const [post, setPost] = React.useState([]);
   const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
+  const [iniciar, setIniciar] = React.useState(false);
 
   const toggleSidebar = () => {
     setSidebarActive(prevState => !prevState);
@@ -30,9 +31,10 @@ const GetEssay = () => {
       .then(res => {
         setPost(res.data);
         console.log(res.data)
+        setIniciar(true);
 
       })
-  }, []);
+  }, [iniciar,post]);
   if (!post) return null;
   function shuffleArray(array) {
     const newArray = [...array];
@@ -52,10 +54,12 @@ const GetEssay = () => {
 
         <Navbar toggleSidebar={toggleSidebar} />
         <main >
+        {iniciar && (
           <Essay
             ensayo={shuffleArray(post).slice(0, 10)}
             titleEnsayo={localStorage.getItem("essayTemario") === "numeros" ? "Números" : localStorage.getItem("essayTemario") === "algebra" ? "Álgebra y Funciones" : localStorage.getItem("essayTemario") === "geometria" ? "Geometría" : localStorage.getItem("essayTemario") === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}
           />
+        )}
         </main>
       </div>
     </>

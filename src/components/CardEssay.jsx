@@ -16,6 +16,7 @@ const CardEssay = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [essayId, setEssayId] = useState(0);
   const [essayTemario, setEssayTemario] = useState("");
+  const [spinner, setSpinner] = useState(true);
   const showPopupFunction = (essayId, essayTemario) => {
     setEssayId(essayId);
     setEssayTemario(essayTemario);
@@ -30,7 +31,7 @@ const CardEssay = () => {
     })
       .then(res => {
         setEssays(res.data);
-
+        setSpinner(false);
       })
   }, []);
   console.log(essays)
@@ -62,6 +63,9 @@ const CardEssay = () => {
   }
   return (
     <>
+      {spinner && (
+        <div className="spinner loading"></div>
+      )}
       <ul className="insights">
         {essays.map((essay) => (
           <li onClick={()=>{showPopupFunction(essay.id, essay.type, essay.type)}}>

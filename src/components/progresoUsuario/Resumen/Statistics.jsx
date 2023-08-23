@@ -19,6 +19,11 @@ const Statistics = () => {
     const [essayAverageScore, setEssayAverageScore] = useState(0);
     const [essayScoreBest, setEssayScoreBest] = useState(0);
     const [five_essay_ul , setFive_essay_ul] = useState([]);
+    const [spinner1,setSpinner1] = useState(true);
+    const [spinner2,setSpinner2] = useState(true);
+    const [spinner3,setSpinner3] = useState(true);
+    const [spinner4,setSpinner4] = useState(true);
+    const [spinner5,setSpinner5] = useState(true);
     async function EssayData() {
         const token = localStorage.getItem("token");
 
@@ -33,7 +38,7 @@ const Statistics = () => {
         //dos decimales solo si es que tiene decimales = toFixed(2) como no agregar los decimales si es un numero entero = 
             
             setEssayScoreRecent(essayMostRecentData.data.puntaje.toFixed(0))
-   
+            setSpinner1(false);
       
 
     }
@@ -48,7 +53,7 @@ const Statistics = () => {
         });
         setEssayAverageScore(essayMostRecentData.data.average.toFixed(0)) 
         setEssayScoreBest(essayMostRecentData.data.bestScore.puntaje.toFixed(0))
-
+        setSpinner2(false);
     }
 
     async function FiveEssayData() {
@@ -62,7 +67,7 @@ const Statistics = () => {
 
         setFive_essay_ul(essayFiveRecentData.data)
         console.log(five_essay_ul)
-
+        setSpinner3(false);
     }
 
     return (
@@ -71,8 +76,13 @@ const Statistics = () => {
                 <ul className='insights'>
                     <li>
                         <i class='resumen bx bx-calendar-check'></i>
-                        <span className='info'>         
+                        <span className='info'>
+                            {spinner1 && (
+                                <div className="spinner loading"></div>
+                            )}
+                            {!spinner1 && (   
                             <h3>{essayScoreRecent}</h3>
+                            )}
                             <p href="username">Ensayo más reciente</p>                    
                         </span>
                     </li>
@@ -80,15 +90,24 @@ const Statistics = () => {
                         <i class='resumen bx bx-globe'></i>
                         <span className='info'>
                             
-
+                            {spinner2 && (
+                                <div className="spinner loading"></div>
+                            )}
+                            {!spinner2 && (
                             <h3>{essayAverageScore}</h3>
+                            )}
                             <p href="username">Promedio de puntajes</p>
                         </span>
                     </li>
                     <li>
                     <i class='resumen bx bxs-arrow-to-top' ></i>
                         <span className='info'>
+                            {spinner2 && (
+                                <div className="spinner loading"></div>
+                            )}
+                            {!spinner2 && (
                             <h3>{essayScoreBest}</h3>
+                            )}
                             <p href="username">Puntaje máximo</p>
 
                         </span>
@@ -124,6 +143,11 @@ const Statistics = () => {
                                 <th>Puntaje</th>
                             </tr>
                         </thead>
+                        {spinner3 && (
+                               
+                                    <div className="spinner loading" style={{marginTop:'1rem'}}></div>
+                             
+                            )}
                         <tbody>
                         
                             {five_essay_ul.length !== 0 &&  five_essay_ul.map((ensayo, index) => (
