@@ -128,7 +128,7 @@ const CardEssayCustom = () => {
       )}
       <ul className="insights">
         {essaysConfig.map((essay) => (
-          <li onClick={() => { showPopupFunction(essay.id, essay.name, essay.questionNumber, essay.user_Essay_Config_types_all ) }}>
+          <li key={essay.id} onClick={() => { showPopupFunction(essay.id, essay.name, essay.questionNumber, essay.user_Essay_Config_types_all ) }}>
             <img className="bx" src={essaycustom} />
             <span className="info">
               <h3>{essay.name}</h3>

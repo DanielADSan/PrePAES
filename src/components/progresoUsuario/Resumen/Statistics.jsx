@@ -75,7 +75,7 @@ const Statistics = () => {
             <div className='containerDashboard'>
                 <ul className='insights'>
                     <li>
-                        <i class='resumen bx bx-calendar-check'></i>
+                        <i className='resumen bx bx-calendar-check'></i>
                         <span className='info'>
                             {spinner1 && (
                                 <div className="spinner loading"></div>
@@ -87,7 +87,7 @@ const Statistics = () => {
                         </span>
                     </li>
                     <li>
-                        <i class='resumen bx bx-globe'></i>
+                        <i className='resumen bx bx-globe'></i>
                         <span className='info'>
                             
                             {spinner2 && (
@@ -100,7 +100,7 @@ const Statistics = () => {
                         </span>
                     </li>
                     <li>
-                    <i class='resumen bx bxs-arrow-to-top' ></i>
+                    <i className='resumen bx bxs-arrow-to-top' ></i>
                         <span className='info'>
                             {spinner2 && (
                                 <div className="spinner loading"></div>
@@ -116,23 +116,33 @@ const Statistics = () => {
                 <div className='bottom-data'>
                     <div className='orders'>
                         <div className='header'>
-                            <i class='bx bx-stats'></i>
+                            <i className='bx bx-stats'></i>
                             <h3>Evolución de puntaje</h3>
-                            <i class='bx bx-filter'></i>
+                            {spinner4 && (
+                               
+                               <div className="spinner loading" ></div>
+                        
+                       )}
+                            <i className='bx bx-filter'></i>
                   
                         </div>
                         <div className='containerGraphicData'>
                             <div className='graphicData'>
-                                <LinesChart />
+                                <LinesChart setSpinner4={setSpinner4}/>
                             </div>
                         </div>
                         
                     </div>
-                    <div class="orders">
-                    <div class="header">
-                    <i class='bx bx-history' ></i>
+                    <div className="orders">
+                    <div className="header">
+                    <i className='bx bx-history' ></i>
                         <h3>Ultimos ensayos</h3>
-                        <i class='bx bx-filter'></i>
+                        {spinner3 && (
+                               
+                               <div className="spinner loading" ></div>
+                        
+                       )}
+                        <i className='bx bx-filter'></i>
             
                     </div>
                     <table>
@@ -143,11 +153,7 @@ const Statistics = () => {
                                 <th>Puntaje</th>
                             </tr>
                         </thead>
-                        {spinner3 && (
-                               
-                                    <div className="spinner loading" style={{marginTop:'1rem'}}></div>
-                             
-                            )}
+                       
                         <tbody>
                         
                             {five_essay_ul.length !== 0 &&  five_essay_ul.map((ensayo, index) => (

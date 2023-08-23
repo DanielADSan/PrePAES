@@ -57,7 +57,7 @@ const beneficiosNumericosPorMes = [
 
 const ApiEssayLast5 = Apiurl +'recent_essay_resume/'
 
-export default function LinesChart() {
+export default function LinesChart({setSpinner4}) {
     const [items, setHistorial] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -78,6 +78,7 @@ export default function LinesChart() {
             const data = Object.values(res.data);
             setEssayInfo(data)
             console.log(essayInfo)
+            setSpinner4(false);
         })
         .catch(error => {
             console.log(error);

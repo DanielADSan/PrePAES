@@ -21,12 +21,12 @@ const Navbar = ({ toggleSidebar }) => {
             <i className='bx bx-bell'></i>
             <span className="count">2</span>
           </a>*/}
-          <div class="profile">
+          <div className="profile">
                     <div className="infoo">
                         <p>Hola, <b>{localStorage.getItem('username')}</b></p>
                         <small className="text-muted">Estudiante</small>
                     </div>
-                    <div class="profile-photo">
+                    <div className="profile-photo">
                         <img src={user}/>
                     </div>
                 </div>

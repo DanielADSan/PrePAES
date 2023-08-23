@@ -68,7 +68,7 @@ const CardEssay = () => {
       )}
       <ul className="insights">
         {essays.map((essay) => (
-          <li onClick={()=>{showPopupFunction(essay.id, essay.type, essay.type)}}>
+          <li key={essay.id} onClick={()=>{showPopupFunction(essay.id, essay.type, essay.type)}}>
             <img className="bx" src={essay.type === "numeros" ? numeros : essay.type === "algebra" ? algebra : essay.type === "geometria" ? geometria : essay.type === "probabilidades" ? probabilidad : crearEnsayo} />
             <span className="info">
               <h3>{essay.type === "numeros" ? "Números" : essay.type === "algebra" ? "Álgebra y Funciones" : essay.type === "geometria" ? "Geometría" : essay.type === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}</h3>
@@ -84,7 +84,7 @@ const CardEssay = () => {
                  
                 <div className="popup-content">
                 <div className="popup-header">
-                  <i class='bx bx-x exitPopup' onClick={()=>{setShowPopup(false)}}></i>
+                  <i className='bx bx-x exitPopup' onClick={()=>{setShowPopup(false)}}></i>
                 </div> 
                   <h1 style={{ fontWeight: "bold" }}>{essayTemario === "numeros" ? "Números" : essayTemario === "algebra" ? "Álgebra y Funciones" : essayTemario === "geometria" ? "Geometría" : essayTemario === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}</h1>
                   <p style={{fontSize:'20px', marginTop:'1rem'}}>Tendrá a su disposición <b>20 minutos</b> para contestar el ensayo de <b>10 preguntas</b>, podrá navegar entre preguntas y por el momento <b>no puedes omitirlas</b>. </p>
