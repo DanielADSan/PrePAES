@@ -137,6 +137,7 @@ return (
                     key={j}
                     expanded={expanded === j}
                     onChange={handleChange(j)}
+                    className='accordion-item'
                   >
                     <AccordionSummary
                       expandIcon={

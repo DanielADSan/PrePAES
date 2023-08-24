@@ -66,6 +66,14 @@ const GetEssayCustomTest = () => {
 
         <Navbar toggleSidebar={toggleSidebar} />
         <main >
+        {!iniciar && (
+                        <div className="shapeContainer" >
+
+
+                            <div class="shapes-9"></div>
+                            <h2>Generando Ensayo</h2>
+                        </div>
+                    )}
           {iniciar && (
             <Essay
               ensayo={post}

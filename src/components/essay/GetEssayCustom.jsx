@@ -20,12 +20,12 @@ const GetEssayCustom = () => {
     const [ensayosArray, setEnsayosArray] = React.useState([])
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
 
-  const toggleSidebar = () => {
-    setSidebarActive(prevState => !prevState);
-  };
-  useEffect(() => {
-    localStorage.setItem("sidebarActive", sidebarActive);
-  }, [sidebarActive]);
+    const toggleSidebar = () => {
+        setSidebarActive(prevState => !prevState);
+    };
+    useEffect(() => {
+        localStorage.setItem("sidebarActive", sidebarActive);
+    }, [sidebarActive]);
 
     function llamadoApi() {
         console.log(localStorage.getItem('formData'))
@@ -45,10 +45,10 @@ const GetEssayCustom = () => {
                 //las promesas pueden tener tres estados: pendiente (pending), resuelta (fulfilled) y rechazada (rejected).
                 promesas.push(axios.get(ensayoUrl, {
                     headers: {
-                      Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${token}`
                     }
-                  }));
-          
+                }));
+
             }
         }
 
@@ -121,7 +121,7 @@ const GetEssayCustom = () => {
         if (ensayosArray.length > 0) {
 
             llamadoApi()
-           
+
         }
     }, [ensayosArray]);
 
@@ -132,6 +132,14 @@ const GetEssayCustom = () => {
 
                 <Navbar toggleSidebar={toggleSidebar} />
                 <main >
+                    {!iniciar && (
+                        <div className="shapeContainer" >
+
+
+                            <div class="shapes-9"></div>
+                            <h2>Generando Ensayo</h2>
+                        </div>
+                    )}
                     {iniciar && (
                         <Essay
                             ensayo={filtrarArray(post)}
