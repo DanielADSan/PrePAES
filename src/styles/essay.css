@@ -104,6 +104,20 @@
     border: 1px dashed #ccc !important;
     color: black !important;
   }
+  .selectedTrue {
+    background-color: greenyellow!important;
+    animation: apretar 0.2s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    border: 1px dashed #ccc !important;
+    color: black !important;
+  }
+  .selectedFalse {
+    background-color: #FF6961 !important;
+    animation: apretar 0.2s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    border: 1px dashed #ccc !important;
+    color: black !important;
+  }
   .selected:focus {
     outline: none !important;
   }

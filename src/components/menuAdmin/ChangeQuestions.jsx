@@ -23,6 +23,7 @@ const ChangeQuestions = () => {
     const [search, setSearch] = React.useState('');
     const [paginaActual, setPaginaActual] = React.useState(0);
     const itemsPorPagina = 4;
+    const [totalPaginas, setTotalPaginas] = React.useState(0);
     const [selectFiltro, setSelectFiltro] = React.useState('4');
     const [filtrarPor, setFiltrarPor] = React.useState(true);
     const [focusFiltrar, setFocusFiltrar] = React.useState(false)
@@ -65,6 +66,7 @@ const ChangeQuestions = () => {
         })
             .then(response => {
                 setQuestions(response.data);
+                setTotalPaginas(Math.ceil(response.data.length / itemsPorPagina - 1));
                 setStatus(true);
                 setError(false);
                 console.log(questions)
@@ -221,12 +223,15 @@ const ChangeQuestions = () => {
         }
     }
     const largoBusqueda = () => {
-        if (!search) return questions.length
-
+        if (!search){
+           
+             return questions.length
+        }
 
         const filtrado = questions.filter(ensayo => ensayo.id)
         return filtrado.length;
     }
+ 
     const handleFocus = () => {
         setFocusFiltrar(true)
     }
@@ -234,6 +239,7 @@ const ChangeQuestions = () => {
     //funcion para avanzar de pagina.
     const nextPage = () => {
         const totalPaginas = largoBusqueda();
+        
         if ((paginaActual + 1) * itemsPorPagina < totalPaginas) {
             setPaginaActual(paginaActual + 1);
         }
@@ -251,6 +257,7 @@ const ChangeQuestions = () => {
     return (
         <React.Fragment>
             <div className=''>
+  
                 <div className=''>
 
 
@@ -319,11 +326,18 @@ const ChangeQuestions = () => {
                                 <div className='Botones'>
                                     <ul className="pagination">
                                         <li onClick={previousPage} className="page-item"><a className="page-link" href="#">Retroceder</a></li>
-                                        <li className="page-item"><a className="page-link" href="#">{paginaActual + 1}</a></li>
+                                        <li className="page-item" onClick={()=>{setPaginaActual(1)}}><a className="page-link" href="#"><i class='bx bx-chevrons-left' style={{fontSize:'16px'}}></i></a></li>
+                                        <li className="page-item"><a className="page-link" href="#">{paginaActual}</a></li>
+               
+                                        <li className="page-item" onClick={()=>{setPaginaActual(totalPaginas)}}><a className="page-link" href="#"><i class='bx bx-chevrons-right' style={{fontSize:'16px'}}></i></a></li>
+                                    
                                         <li onClick={nextPage} className="page-item"><a className="page-link" href="#">Avanzar</a></li>
                                     </ul>
+                                   
                                 </div>
+                                
                             </div>
+                            
                             <div className='orders'>
                         <div className='header'>
                             <i class='bx bx-stats'></i>

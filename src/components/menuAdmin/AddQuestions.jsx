@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Apiurl } from '../../Services/apirest';
 import replace from 'react-string-replace'; // Importa la biblioteca react-string-replace
@@ -10,6 +10,7 @@ const AddQuestions = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [question, setQuestion] = useState("Enunciado de la pregunta");
     const [subject, setSubject] = useState("");
+    const [idSubject, setIdSubject] = useState(0);
     const [linkResolution, setLinkResolution] = useState("");
     const [answer1, setAnswer1] = useState({ label: "", right: "" });
     const [answer2, setAnswer2] = useState({ label: "", right: "" });
@@ -18,12 +19,13 @@ const AddQuestions = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formError, setFormError] = useState(false);
     const token = localStorage.getItem("token");
-    const regex = /\\img{(.*?)\}/g;
+    const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
     const ecuacionRegex = /\[(.*?)\]/g; // Expresión regular para detectar partes de la cadena que contienen ecuaciones
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!question || !subject || !linkResolution || !answer1.label || !answer2.label || !answer3.label || !answer4.label || !answer1.right || !answer2.right || !answer3.right || !answer4.right) {
+        console.log(subject)
+        if (!question || !subject || !linkResolution || !answer1.label || !answer2.label || !answer3.label || !answer4.label || !answer1.right || !answer2.right || !answer3.right || !answer4.right || !idSubject) {
             setFormError(true); // Establecer el estado de formError a true si algún campo está vacío
             setTimeout(() => {
                 setFormError(false);
@@ -32,7 +34,7 @@ const AddQuestions = () => {
         }
 
         setFormError(false); // Establecer el estado de formError a false antes de enviar el formulario
-        const questionData = { question, subject, link_resolution: linkResolution };
+        const questionData = { question, subject, link_resolution: linkResolution, type_question_id: idSubject };
         const response = await axios.post(urlCreateQuestion, questionData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -54,6 +56,21 @@ const AddQuestions = () => {
             setFormSubmitted(false);
         }, 2000); // Desaparecer el mensaje después de 2 segundos
     };
+    useEffect(() => {
+        if(subject === 'numeros'){
+            setIdSubject(2)
+        }
+        if(subject === 'algebra'){
+            setIdSubject(1)
+        }
+        if(subject === 'probabilidades'){
+            setIdSubject(3)
+        }
+        if(subject === 'geometria'){
+            setIdSubject(4)
+        }
+        console.log(idSubject)
+    }, [subject])
     const handleClosePopup = () => {
         setShowPopup(false);
     };
