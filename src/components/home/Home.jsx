@@ -67,7 +67,7 @@ const Home = () => {
                                                 <p>
                                                     Nuestra plataforma está diseñada para ayudarte a preparar y alcanzar un excelente desempeño en la PAES de matemáticas.</p>
                                                 <div class="btn-box">
-                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSedb1BwmEtJ2tuxyq8UUc9c60OsoWg1zKDN19qaGLMXzkDxJA/viewform?usp=sf_link" class="btn-1">
+                                                    <a href="/Register" class="btn-1">
                                                         Registrarse
                                                     </a>
                                                     <a href="/Login" class="btn-2">

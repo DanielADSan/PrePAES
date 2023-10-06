@@ -226,6 +226,20 @@ margin: 10px;
 flex: 1 !important;
 
 }
+.toggle-button-fase button {
+    background-color: var(--light);
+    border: none;
+    position: relative;
+    color: var(--dark);
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 10px;
+    flex: 1 !important;
+    font-size: 25px;
+    
+    }
 .container-enunciados{
     display: flex;
     justify-content: center;
@@ -235,6 +249,11 @@ flex: 1 !important;
 background-color: var(--dark);
 color: var(--light);
 }
+.toggle-button-fase button.active {
+    background-color: var(--dark);
+    color: var(--light);
+    }
+    
 
 
 @media screen and (max-width: 768px) {
