@@ -13,8 +13,11 @@ import CrearEnsayo from './components/createEssay/CrearEnsayo';
 import GetEssayCustom from './components/essay/GetEssayCustom';
 import GetEssayCustomTest from './components/essay/GetEssayCustomTest';
 import Questions from './components/menuAdmin/Questions';
+import Users from './components/menuAdmin/Users'
 import MetodoPrePAES from './components/MetodoPrePAES/MetodoPrePAES';
 import PreguntaPrePAES from './components/MetodoPrePAES/PreguntaPrePAES';
+import Reset from './components/auth/ResetPassword';
+import ChangePassword from './components/auth/ChangePassword';
 
 function App() {
   return (
@@ -31,9 +34,12 @@ function App() {
           <Route path="CrearEnsayo/:tema/:id" element={<GetEssayCustom/>} />
           <Route path="CrearEnsayoTest/:tema/:id" element={<GetEssayCustomTest/>} />
           <Route path="Preguntas" element={<Questions/>} />
+          <Route path="Usuarios" element={<Users/>} />
           <Route path="MetodoPrePAES" element={<MetodoPrePAES/>} />
           <Route path="PreguntaPrePAES" element={<PreguntaPrePAES/>} />
           <Route path="Register" element={<Register />} />
+          <Route path="Reset" element={<Reset />} />
+          <Route path="Reset/Password/:uid/:token/" element={<ChangePassword />} />
         </Routes>
       </BrowserRouter>
     </>
