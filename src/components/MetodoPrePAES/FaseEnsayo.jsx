@@ -7,7 +7,7 @@ import EnsayoPrePAES from './PreguntaPrePAES';
 import CardsInfoFase from './CardsInfoFase';
 import { useNavigate } from 'react-router-dom';
 import Flechafase from '../../icons/Flechafase';
-
+import { motion } from "framer-motion"
 
 
 
@@ -23,9 +23,11 @@ const FaseEnsayo = () => {
   const [question, setQuestion] = useState(null);
   const [questionSinResponder, setQuestionSinResponder] = useState([]);
   const [numeroFase,setNumeroFase] = useState(parseInt(localStorage.getItem("numeroFase")) || 1);
-  const [numeroFaseActual,setNumeroFaseActual] = useState(0);
+  const [selectedButton, setSelectedButton] = useState('Fase');
+    const handleButtonClick = (button) => {
+        setSelectedButton(button);
+    }
   const [error, setError] = useState(false);
-  const totalPreguntas = 10; // Reemplaza 5 con el número total de preguntas
   const hideLineaProgreso = () => {
     setShowLineaProgreso(false);
   };
@@ -235,18 +237,6 @@ const previousPage = () => {
   
    
 }
-const getQuestionsStateSpecific = async () => {
-  const token = localStorage.getItem("token");
-  const response = await axios.get(ApiurlGetQuestion , {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const { data } = response;
-  console.log(data)
-  // Supongamos que response.data[0].user_PrePAES es un arreglo de preguntas
-  setNumeroFaseActual(response.data[0].number_phase);
-}
 
 
   return (
@@ -259,12 +249,52 @@ const getQuestionsStateSpecific = async () => {
       {questionsState.length < 20 && (
         <>
         <div className='number_phase' >
-          <h1 className='font-size-bold' style={{fontWeight:'bold', gridColumnStart:'3', justifySelf:'center'}}>Fase {numeroFase}</h1>
+        <div className="toggle-button-fase" style={{ gridColumnStart:'3', justifySelf:'center'}}>
+               
+               <motion.button
+                   className={selectedButton === 'Fase' ? 'Fase active' : 'Fase'}
+                   onClick={() => handleButtonClick('Fase')}
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   transition={{ duration: 0.2 }}
+               >
+                   Fase {numeroFase}
+               </motion.button>
+               <motion.button
+                   className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
+                   onClick={() => handleButtonClick('Resumen')}
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   transition={{ duration: 0.2 }}
+               >
+                   Resumen 
+               </motion.button>
+               {/*
+               <motion.button
+                   className={selectedButton === 'Estadísticas' ? 'Estadísticas active' : 'Estadísticas'}
+                   onClick={() => handleButtonClick('Estadísticas')}
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   transition={{ duration: 0.2 }}
+               >
+                   Estadísticas
+               </motion.button> */}
+               <motion.div
+                   className="indicator"
+                   layoutId="indicator"
+                   initial={false}
+                   animate={{ x: selectedButton === 'Historial' ? 0 : '50%' }}
+                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+               />
+           </div>
           {questionsState.length >= 10 && (
-              <div className='arrowfase' onClick={()=>nextPage()}>
-              <h2 style={{marginTop:'10px'}}>Fase {numeroFase + 1 }</h2>
-              <Flechafase/>
-            </div>
+              <div className='arrowfase flechafase' onClick={()=>nextPage()}>
+                <h4 style={{marginTop:'10px'}}>Fase {numeroFase + 1 }</h4>
+                <div className=''>
+                  <Flechafase  />
+                </div>
+                
+              </div>
           )}
           
           

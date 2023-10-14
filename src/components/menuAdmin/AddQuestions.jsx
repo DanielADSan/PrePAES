@@ -34,7 +34,7 @@ const AddQuestions = () => {
         }
 
         setFormError(false); // Establecer el estado de formError a false antes de enviar el formulario
-        const questionData = { question, subject, link_resolution: linkResolution, type_question_id: idSubject };
+        const questionData = { question, subject, link_resolution: linkResolution, type_question: idSubject };
         const response = await axios.post(urlCreateQuestion, questionData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
