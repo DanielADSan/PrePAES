@@ -1,0 +1,11 @@
+.tabla-container{
+    color:var(--dark);
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    
+    
+}

@@ -16,8 +16,8 @@ const PaginacionHistorial = () => {
         setSelectedButton(button);
     }
     const [historial, setHistorial] = useState([]);
-    const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive"))||false);
- 
+    const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
+
     const toggleSidebar = () => {
         setSidebarActive(prevState => !prevState);
     };
@@ -36,9 +36,9 @@ const PaginacionHistorial = () => {
             .then(res => {
                 const historialArray = Object.values(res.data);
                 console.log(historialArray);
-                if(historialArray.length === 0){
+                if (historialArray.length === 0) {
                     setError(true);
-                    
+
                 }
                 const historialFiltrado = historialArray.filter((dato) => dato != null && dato.puntaje < 1000);
 
@@ -52,68 +52,78 @@ const PaginacionHistorial = () => {
 
     return (
         <>
-        <Sidebar sidebarActive={sidebarActive} ubicacionActual={"Progreso"} />
-        <div className="content">
-        <Navbar toggleSidebar={toggleSidebar} />
-        
-        <main>
-   
-        <div className='contenedorProgreso'>
-            
-            <div className="container-enunciados">
-          
-                <div className="toggle-button">
-               
-                    <motion.button
-                        className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
-                        onClick={() => handleButtonClick('Resumen')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        Resumen
-                    </motion.button>
-                    <motion.button
-                        className={selectedButton === 'Historial' ? 'Historial active' : 'Historial'}
-                        onClick={() => handleButtonClick('Historial')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        Historial
-                    </motion.button>
-                    {/*
-                    <motion.button
-                        className={selectedButton === 'Estadísticas' ? 'Estadísticas active' : 'Estadísticas'}
-                        onClick={() => handleButtonClick('Estadísticas')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        Estadísticas
-                    </motion.button> */}
-                    <motion.div
-                        className="indicator"
-                        layoutId="indicator"
-                        initial={false}
-                        animate={{ x: selectedButton === 'Historial' ? 0 : '50%' }}
-                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                    />
-                </div>
+            <Sidebar sidebarActive={sidebarActive} ubicacionActual={"Progreso"} />
+            <div className="content">
+                <Navbar toggleSidebar={toggleSidebar} />
+
+                <main>
+                    <div className="header">
+                        <div className="left">
+                            <h1>Progreso</h1>
+                        </div>
+                    </div>
+
+                    <div className='contenedorProgreso'>
+
+                        <div className="container-enunciados">
+
+                            <div className="toggle-button">
+
+                                <motion.button
+                                    className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
+                                    onClick={() => handleButtonClick('Resumen')}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Resumen
+                                </motion.button>
+                                <motion.button
+                                    className={selectedButton === 'Historial' ? 'Historial active' : 'Historial'}
+                                    onClick={() => handleButtonClick('Historial')}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Historial
+                                </motion.button>
+
+                                <motion.button
+                                    className={selectedButton === 'Estadísticas' ? 'Estadísticas active' : 'Estadísticas'}
+                                    onClick={() => handleButtonClick('Estadísticas')}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    Estadísticas
+                                </motion.button>
+                                <motion.div
+                                    className="indicator"
+                                    layoutId="indicator"
+                                    initial={false}
+                                    animate={{ x: selectedButton === 'Historial' ? 0 : '50%' }}
+                                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                                />
+                            </div>
+                        </div>
+
+                        {error && <div className="sinDatos" style={{ margin: '1rem' }}><h4>Aún no realizas un ensayo ...</h4></div>}
+                        {selectedButton === 'Resumen' && (
+                            <Statistics />)}
+                        {selectedButton === 'Historial' && (
+                            <Historial
+                                items={historial}>
+                            </Historial>
+                        )}
+                        {selectedButton === 'Estadísticas' && (
+                            <Estadisticas
+                                items={historial}>
+                            </Estadisticas>
+                        )}
+
+                    </div>
+                </main>
             </div>
-            
-            {error && <div className="sinDatos" style={{margin:'1rem'}}><h4>Aún no realizas un ensayo ...</h4></div>}
-            {selectedButton === 'Resumen' && (
-                <Statistics/>)}
-            {selectedButton === 'Historial' && (
-                <Historial
-                    items={historial}>
-                </Historial>
-            )}
-                
-        </div>
-        </main>
-        </div>
         </>
     )
 }

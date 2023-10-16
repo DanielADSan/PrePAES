@@ -11,7 +11,7 @@ const PreguntaPrePAES = () => {
 
   const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
   const ecuacionRegex = /\[(.*?)\]/g; // Expresión regular para detectar partes de la cadena que contienen ecuaciones
-
+  const number_phase = localStorage.getItem("numeroFase");
   const navigate = useNavigate();  // Get the navigate function
   const [question, setQuestion] = useState(null);
   const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
@@ -79,18 +79,23 @@ const PreguntaPrePAES = () => {
 
 
             <div className="contenedor-principal position-relative mt-4">
-
+              <h3  className="titleEnsayo">Fase {number_phase}</h3>
               <div className="contenedor-pregunta">
 
                 <div className="row ">
-                  <div className="col-md-1">
-                    <h6 style={{ color: "rgb(78, 84, 87)" }}>
-                      #{question.id}
-                    </h6>
-                  </div>
-
-
-                </div>
+            <div className="col-md-11 mt-3">
+              <h3 style={{color:'var(--dark)'}}>
+                {question.subject}
+              </h3>
+            </div>
+            <div className="col-md-1">
+              <h6 style={{color:"rgb(78, 84, 87)"}}>
+                #{question.id}
+              </h6>
+            </div>
+            
+           
+          </div>
 
 
 
