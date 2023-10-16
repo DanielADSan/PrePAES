@@ -12,7 +12,8 @@ class Register extends Component {
       password: '',
       password2: ''
     },
-    errors: [] // Array para almacenar los mensajes de error
+    errors: [], // Array para almacenar los mensajes de error
+    spinner: false,
   };
 
   manejadorSubmit = e => {
@@ -95,8 +96,14 @@ class Register extends Component {
               window.location.href = "./Login";
             } else console.log(r.data.password);
             console.log(r.data)
+            this.setState({
+              spinner: false,
+          })
           })
           .catch((e) => {
+            this.setState({
+              spinner: false,
+          })
             console.log(e.response.data);
             if (e.response.data.password && e.response.data.password === "Las contraseñas deben coincidir.") {
               newErrors.push("Las contraseñas no coinciden");
@@ -192,7 +199,9 @@ class Register extends Component {
                 ))}
               </div>
             )}
-            <p className="pLogin">Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+            {this.state.spinner === true &&
+              <div className="spinner loading" style={{ marginTop: '1rem' }}></div>}
+            <p className="pLogin mt-3">Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
             <p className="pLogin">
               ¿Ya tienes una cuenta? <a className="link" href="./Login">Iniciar Sesion</a>
             </p>
