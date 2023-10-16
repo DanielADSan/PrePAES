@@ -126,11 +126,10 @@ const Statistics = () => {
                             <i className='bx bx-filter'></i>
                   
                         </div>
-                        <div className='containerGraphicData'>
-                            <div className='graphicData'>
+                        
                                 <LinesChart setSpinner4={setSpinner4}/>
-                            </div>
-                        </div>
+                         
+                   
                         
                     </div>
                     <div className="orders">

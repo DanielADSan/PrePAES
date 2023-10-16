@@ -34,7 +34,7 @@ const GetEssay = () => {
         setIniciar(true);
 
       })
-  }, [iniciar,post]);
+  }, [iniciar]);
   if (!post) return null;
   function shuffleArray(array) {
     const newArray = [...array];
