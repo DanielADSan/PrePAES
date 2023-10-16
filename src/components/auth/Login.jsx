@@ -36,6 +36,10 @@ class Login extends React.Component{
             console.log('si funciona')
         }
       }
+    
+    resetPasswordButton=()=>{
+        window.location.href = "/Reset";
+    }
       
     manejadorBoton=()=>{
         
@@ -164,6 +168,7 @@ class Login extends React.Component{
                             {this.state.spinner === true &&
                             <div className="spinner loading" style={{marginTop:'1rem'}}></div>}
                             <p className='pLogin mt-1'>¿No tienes una cuenta? <a className="link" href="https://docs.google.com/forms/d/e/1FAIpQLSedb1BwmEtJ2tuxyq8UUc9c60OsoWg1zKDN19qaGLMXzkDxJA/viewform?usp=sf_link" >Solicitar acceso</a></p>
+                            <p className='pLogin mt-1' id='restPassword' onClick={()=>this.resetPasswordButton()}>¿Has olvidado tu contraseña?</p>
                         </div>
         </form>
 

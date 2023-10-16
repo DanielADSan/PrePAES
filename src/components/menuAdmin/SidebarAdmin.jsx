@@ -81,8 +81,8 @@ toggler.addEventListener('change', function () {
       </a>
       <ul className="side-menu">
       <li className={ubicacionActual === "Preguntas" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Preguntas`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i class='bx bx-question-mark'></i>Administrar Preguntas</a></li>
+      <li className={ubicacionActual === "Usuarios" ? "active" : ""}><a href="#" onClick={()=>{navigate(`/Usuarios`),localStorage.removeItem("ensayo"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntuacion"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("puntajeFinal"),localStorage.removeItem("selectedAnswers"),localStorage.removeItem("preguntaActual"),localStorage.removeItem("respuesta"),localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante")}}><i class='bx bxs-user-detail'></i>Administrar Usuarios</a></li>
       {/*<li className={ubicacionActual === "Metodo PrePAES" ? "active" : ""}><a href="#"><i className='bx bx-receipt'></i>Metodo PrePAES</a></li>*/}
-  
    
     
     </ul>

@@ -134,3 +134,11 @@ input.error{
     border: 2px solid darkred;
     border-radius: 3px;
 }
+
+#restPassword {
+    color: white;
+}
+
+#restPassword:hover {
+    color: #F0AD4E;
+}
