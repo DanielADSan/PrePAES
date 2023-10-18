@@ -8,17 +8,25 @@ import { Apiurl } from "../../Services/apirest";
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
 const PreguntaPrePAES = () => {
-
+  const urlSubmitErrors = Apiurl + "questions_error/";
   const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
   const ecuacionRegex = /\[(.*?)\]/g; // Expresión regular para detectar partes de la cadena que contienen ecuaciones
   const number_phase = localStorage.getItem("numeroFase");
   const navigate = useNavigate();  // Get the navigate function
+  const [showSolucion, setShowSolucion] = useState(false);
   const [question, setQuestion] = useState(null);
   const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
   const [showAnswer, setShowAnswer] = useState(false); // Estado que almacena si se muestra la respuesta o no
-  const [blockAnswer, setBlockAnswer] = useState(false); // Estado que almacena si se muestra la respuesta o no
+  const [blockAnswer, setBlockAnswer] = useState(false);
+  const [questionError, setQuestionError] = useState('');
+  const [formDataError, setFormDataError] = useState({
+    type_error: '',
+    message: '',
+    question: questionError,
+  }); // Estado que almacena si se muestra la respuesta o no
   const [selectedAnswers, setSelectedAnswers] = useState(
     JSON.parse(localStorage.getItem("selectedAnswers")) || {});
+  const [showFormError, setShowFormError] = useState(false);
   const toggleSidebar = () => {
     setSidebarActive(prevState => !prevState);
   };
@@ -66,6 +74,52 @@ const PreguntaPrePAES = () => {
   const seleccionarAlternativa = (id) => {
     if (!blockAnswer) {
       setSelectedAnswers(id);
+    }
+  };
+  const saveQuestionError = (idQuestion) => {
+    console.log(idQuestion)
+    setQuestionError(question.id);
+    console.log(formDataError)
+    setShowFormError(true);
+
+  }
+
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setFormDataError((current) => ({
+      ...current,
+      [id]: value,
+      question: questionError
+    }));
+    console.log(formDataError)
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aquí puedes realizar acciones con los datos guardados en formData
+    const token = localStorage.getItem("token");
+    console.log(formDataError);
+    if (formDataError.type_error === '' || !formDataError?.message || formDataError === '') {
+      alert('Debe llenar todos los campos')
+    } else {
+      axios.post(urlSubmitErrors, formDataError, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          console.log(response.data);
+          alert('Su reporte ha sido enviado con éxito')
+          setShowFormError(false);
+          setFormDataError({
+            type_error: '',
+            message: '',
+            question: '',
+          })
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   };
 
@@ -168,8 +222,13 @@ const PreguntaPrePAES = () => {
                   </button>
                 ))}
                 <div className="mt-4">
+                <div className="mt-4 mb-4" style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+                        <button className=" btn btn-outline-dark btn-lg" onClick={() => { setShowSolucion(true) }}>Ver Solución</button>
+                        <button className="btn btn-lg  btn-outline-warning "  onClick={() => { saveQuestionError(question.id) }} style={{ alignSelf: 'end', display:'flex', alignItems:'center', gap:'.5rem' }}><i class='bx bx-error'></i> Reportar</button>
+                      </div>
+
                       <iframe
-                        className="video-respuesta"
+                        className={`video-respuesta mt-3 ${showSolucion ? "show" : ""}`}
                         id="video03"
                         width="560"
                         height="315"
@@ -195,7 +254,55 @@ const PreguntaPrePAES = () => {
 
 
             </div>
+            {showFormError && (
+          <div className="popup">
 
+            <div className="popup-content" style={{width:'600px'}}>
+              <div className="popup-header">
+              <i class='bx bx-x exitPopup' onClick={() => {
+                  setShowFormError(false), setFormDataError({
+                    type_error: '',
+                    message: '',
+                    question: questionError,
+                  })
+                }}></i>
+              </div>
+              
+
+              <form action="" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', width: '100%' }} onSubmit={handleSubmit}>
+                <div class="form-group ">
+                  <h2 className="mb-4">Reportar Pregunta</h2>
+                  <label style={{ fontWeight: 'bold' }} for="errorType">Tipo de Error</label>
+                  <select
+                    className="form-control"
+                    id="type_error"
+                    value={formDataError.type_error}
+                    onChange={handleInputChange}
+                  >
+                    <option>Seleccione una opción</option>
+                    <option>Ortografía de la Pregunta</option>
+                    <option>Solución Erronea</option>
+                    <option>Video Caído</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label style={{ fontWeight: 'bold' }} for="errorDescription">Detalle</label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    id="message"
+                    value={formDataError.message}
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+
+                <button type="submit" className="btn btn-dark btn-lg m-2">Enviar</button>
+              </form>
+            </div>
+          </div>
+        )}
           </div>
         ) : (
           <h1>gola</h1> // Muestra el componente Loading mientras se carga la pregunta

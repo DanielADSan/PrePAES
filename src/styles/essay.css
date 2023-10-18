@@ -348,14 +348,30 @@
   
   .video-respuesta {
     border-radius: 7px;
-    border: 5px dashed #34495e;
-    display: flex;
+    border: 3px dashed #34495e;
+   
     gap: 1em;
     justify-items: center;
-    width: 70%;
+    width: 100%;
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: 30px;
+   display: none;
+    height: 400px;
+  }
+  .video-respuesta.show{
+    display: flex;
+    opacity: 0;
+    animation: aparecer 1.1s forwards;
+  }
+
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   
   .boton {
@@ -427,7 +443,7 @@
   }
   .popup-content {
     animation: fadeIn 0.2s ease-in-out;
-    background: var(--light);
+    background: var(--grey);
     padding: 2rem;
    
     border-radius: 5px;
