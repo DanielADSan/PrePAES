@@ -31,6 +31,9 @@ class Register extends Component {
   };
 
   signUp =  () => {
+    this.setState({
+      spinner: true,
+  })
     const { email, username, password, password2 } = this.state.form;
     const { errors } = this.state;
     // Crear una variable local para almacenar los errores temporales
