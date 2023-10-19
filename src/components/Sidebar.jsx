@@ -29,12 +29,8 @@ const Sidebar = ({ sidebarActive, ubicacionActual }) => {
         li.classList.add('active');
       })
     });
-      const searchBtn = document.querySelector('.content nav form .form-input button');
-      const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
       const searchForm = document.querySelector('.content nav form');
       const sideBar = document.querySelector('.sidebar');
-
-
 
       window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
@@ -43,7 +39,6 @@ const Sidebar = ({ sidebarActive, ubicacionActual }) => {
           sideBar.classList.remove('close');
         }
         if (window.innerWidth > 576) {
-          searchBtnIcon.classList.replace('bx-x', 'bx-search');
           searchForm.classList.remove('show');
         }
 
