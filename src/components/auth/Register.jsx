@@ -31,9 +31,7 @@ class Register extends Component {
   };
 
   signUp =  () => {
-    this.setState({
-      spinner: true,
-  })
+    
     const { email, username, password, password2 } = this.state.form;
     const { errors } = this.state;
     // Crear una variable local para almacenar los errores temporales
@@ -83,7 +81,11 @@ class Register extends Component {
   
     if (newErrors.length === 0) {
       /* Hacer la petición axios o cualquier otra acción aquí */
+     
       return new Promise((resolve, reject) => {
+        this.setState({
+          spinner: true,
+      })
         const instance = axios.create({
           baseURL: baseUrl,
           headers: {
