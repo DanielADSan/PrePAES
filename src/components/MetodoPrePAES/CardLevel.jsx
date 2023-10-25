@@ -7,7 +7,7 @@ const CardLevel = ({ level, category, isCorrect }) => {
     return (
         <>
          <div className="card__level-container">
-            <h3 style={{fontWeight:'400'}}>Pregunta {level}</h3>
+            <h3 style={{fontWeight:'500'}}>Pregunta {level}</h3>
            
           </div>
           <div className="card__content">

@@ -11,9 +11,10 @@ import numeros from '../../images/numeros.png'
 import progreso from '../../images/progreso.png'
 import jovenes from '../../images/jovenes.png'
 import inicioPAES from '../../images/inicioPAES.png'
-import logoPrePAES from '../../images/prepaesLogo.png'
 import axios from "axios"; 
+
 import { Apiurl } from '../../Services/apirest';
+
 
 const Home = () => {
     useEffect(() => {

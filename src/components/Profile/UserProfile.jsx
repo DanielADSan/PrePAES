@@ -3,11 +3,13 @@ import '../../styles/userProfile.css'
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
 import axios from 'axios';
+import insignia from '../../images/insignia.png'
 import { Apiurl } from '../../Services/apirest';
+import Logros from './logros/Logros';
 
-const ApiurlUsersRetrieveUpdateDestroy = Apiurl+'user/'
-const ApiurlChangePassword = Apiurl+'api/change_password_profile/'
-const ApiUserData = Apiurl+'api/profile/'
+const ApiurlUsersRetrieveUpdateDestroy = Apiurl + 'user/'
+const ApiurlChangePassword = Apiurl + 'api/change_password_profile/'
+const ApiUserData = Apiurl + 'api/profile/'
 
 const UserProfile = () => {
     const token = localStorage.getItem("token");
@@ -16,7 +18,7 @@ const UserProfile = () => {
     const [errorTypeData, setErrorTypeData] = useState('');
     const [errorTypePassword, setErrorTypePassword] = useState('');
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
-    
+
     const toggleSidebar = () => {
         setSidebarActive(prevState => !prevState);
     };
@@ -139,73 +141,82 @@ const UserProfile = () => {
     return (
         <>
             <Sidebar sidebarActive={sidebarActive} ubicacionActual={"Perfil"} />
-            <div className="content" >
+            <div className="content"  >
                 <Navbar toggleSidebar={toggleSidebar} />
                 <main>
                     <div className="header">
-                        <div className="left">
-                            <h1>Perfil</h1>
-                        
-                        </div>
-                        <div style={{width:'100%', display:'grid',placeContent:'center'}} >
-                        <div className='containerUserData'>
 
-                            <div className='containerSpace'>
-                                <h2>Mi cuenta</h2>
-                                <div className='containerData'>
-                                    <h4 href="username">Nombre De Usuario</h4>
-                                    <input type="text" name="username" id="username" className="input-group-text" />
-                                </div>
-                                <div className='containerData'>
-                                    <h4 href="email">Email</h4>
-                                    <input type="text" name="email" id="email" className="input-group-text" />
-                                </div>
-                                <button type="button" className="btn-perfil btn btn-outline-dark updateButton" onClick={() => { updateUserData(); updatePassword(); togglePopup() }}>Guardar cambios</button>
+                        <div className='profile-container' >
+                            <section>
+                                <div className="left">
+                                    <h1>Perfil</h1>
 
-                            </div>
-                            <div className='containerSpace'>
-                                <h2>Contraseña</h2>
-                                <div className='containerData'>
-                                    <h4 href="password">Contraseña actual</h4>
-                                    <input type="text" name="passwordActual" id="passwordActual" className="input-group-text" />
                                 </div>
-                                <div className='containerData'>
-                                    <h4 href="password">Contraseña nueva</h4>
-                                    <input type="text" name="passwordNew" id="passwordNew" className="input-group-text" />
-                                </div>
-                                <div className='containerData'>
-                                    <h4 href="password">Repita nueva contraseña</h4>
-                                    <input type="text" name="passwordNew2" id="passwordNew2" className="input-group-text" />
-                                </div>
-                            </div>
+                                <div className='containerUserData'>
 
-                            {showPopup && (
-                                <div className='popup'>
-                                    <div className='popup-content'>
-                                        <div className='popup-header'>
-                                            <i className='bx bx-x exitpopup' onClick={togglePopup}></i>
+                                    <div className='containerSpace'>
+                                        <h2>Mi cuenta</h2>
+                                        <div className='containerData'>
+                                            <h4 href="username">Nombre De Usuario</h4>
+                                            <input type="text" name="username" id="username" className="input-group-text" />
                                         </div>
-                                        <h1 style={{ fontWeight: "bold" }}></h1>
+                                        <div className='containerData'>
+                                            <h4 href="email">Email</h4>
+                                            <input type="text" name="email" id="email" className="input-group-text" />
+                                        </div>
+                                        <button type="button" className="btn-perfil btn btn-outline-dark updateButton" onClick={() => { updateUserData(); updatePassword(); togglePopup() }}>Guardar cambios</button>
 
-                                        {errorTypeData === 'username_email' && (
-                                            <p>Verifique que los campos de usuario y correo electrónico esten completos y en el formato correcto</p>
-                                        )}
-
-                                        {errorTypePassword === 'password' && (
-                                            <p>Verifique que la contraseña actual es correcta y que las contraseña nueva es igual en ambos campos</p>
-                                        )}
-
-                                        {errorTypeData === '' && errorTypePassword === '' && (
-                                            <p>Sus datos han sido modificados con exito</p>
-                                        )}
-
-                                        <button type="button" className="btn btn-outline-dark btn-lg " onClick={togglePopup}>Cerrar</button>
                                     </div>
+                                    <div className='containerSpace'>
+                                        <h2>Contraseña</h2>
+                                        <div className='containerData'>
+                                            <h4 href="password">Contraseña actual</h4>
+                                            <input type="text" name="passwordActual" id="passwordActual" className="input-group-text" />
+                                        </div>
+                                        <div className='containerData'>
+                                            <h4 href="password">Contraseña nueva</h4>
+                                            <input type="text" name="passwordNew" id="passwordNew" className="input-group-text" />
+                                        </div>
+                                        <div className='containerData'>
+                                            <h4 href="password">Repita nueva contraseña</h4>
+                                            <input type="text" name="passwordNew2" id="passwordNew2" className="input-group-text" />
+                                        </div>
+                                    </div>
+
+                                    {showPopup && (
+                                        <div className='popup'>
+                                            <div className='popup-content'>
+                                                <div className='popup-header'>
+                                                    <i className='bx bx-x exitpopup' onClick={togglePopup}></i>
+                                                </div>
+                                                <h1 style={{ fontWeight: "bold" }}></h1>
+
+                                                {errorTypeData === 'username_email' && (
+                                                    <p>Verifique que los campos de usuario y correo electrónico esten completos y en el formato correcto</p>
+                                                )}
+
+                                                {errorTypePassword === 'password' && (
+                                                    <p>Verifique que la contraseña actual es correcta y que las contraseña nueva es igual en ambos campos</p>
+                                                )}
+
+                                                {errorTypeData === '' && errorTypePassword === '' && (
+                                                    <p>Sus datos han sido modificados con exito</p>
+                                                )}
+
+                                                <button type="button" className="btn btn-outline-dark btn-lg " onClick={togglePopup}>Cerrar</button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            </section>
+                            <section>
+                                <div className="left">
+                                    <h1>Logros</h1>
+                                </div>
+                                <Logros />
+                            </section>
+
                         </div>
-                   
-                    </div>
                     </div>
                 </main>
             </div>

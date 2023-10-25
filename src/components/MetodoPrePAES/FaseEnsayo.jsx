@@ -14,6 +14,7 @@ const FaseEnsayo = () => {
   const token = localStorage.getItem("token");
   const ApiurlGetQuestion = Apiurl + "PrePAES_questions_state/";
   const apiUrlCreateEssay = Apiurl + "PrePAES/create/";
+  const urlGetStadictisFase = Apiurl + "PrePAES_stadictis_real_time/";
   const UrlGetOneQuestion = Apiurl + "question_oneQuestionRules_prePaes/";
   const urlGetDataQuestionPrePAES = Apiurl + "PrePAES_data_questions/";
   const [showLineaProgreso, setShowLineaProgreso] = useState(true);
@@ -22,6 +23,10 @@ const FaseEnsayo = () => {
   const [questionSinResponder, setQuestionSinResponder] = useState([]);
   const [numeroFase,setNumeroFase] = useState(parseInt(localStorage.getItem("numeroFase")) || 1);
   const [selectedButton, setSelectedButton] = useState('Fase');
+  const [dataStadictisFase, setDataStadictisFase] = useState({
+    category:'',
+    average:0,
+  });
     const handleButtonClick = (button) => {
         setSelectedButton(button);
     }
@@ -32,7 +37,7 @@ const FaseEnsayo = () => {
   
   useEffect(() => {
     getQuestionsState(parseInt(localStorage.getItem("numeroFase")));
-    
+    getStadictisFase();
     navigate("/MetodoPrePAES");
     console.log(numeroFase)
   }, [numeroFase]);
@@ -43,6 +48,27 @@ const FaseEnsayo = () => {
       console.log('CAMBIO DE FASE')
     }
   }, [questionsState.length>10]);
+
+  const getStadictisFase = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(urlGetStadictisFase + numeroFase, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;	
+      setDataStadictisFase(
+        {
+          category:data[0].category,
+          average:data[0].average,
+        }
+      );
+    } catch (error) {
+      // Manejo de errores: Puedes personalizar este bloque para manejar errores específicos.
+      console.error("Error al obtener las preguntas:", error);
+    }
+  };
   const getQuestionsState = async (numberPhase) => {
     try {
       const token = localStorage.getItem("token");
@@ -260,12 +286,26 @@ const previousPage = () => {
                   </>  
               )}
           </div>
-          <div className='Botones'>
+          <div className='container-info-fase'>
+            
+          <div className='data-tiempo-real'>
+            <div className='data-tiempo-real-item'>
+              <h4>Categoría a Reforzar</h4>
+              <h3>{dataStadictisFase.category}</h3>
+            </div>
+            <div className='data-tiempo-real-item'>
+              <h4>Nota promedio</h4>
+              <h3>{dataStadictisFase.average}</h3>
+            </div>
+          </div>
+          <div className='Botones' style={{gridColumn: '3'}}>
+        
                     <ul className="pagination">
                         <li onClick={previousPage}  className="page-item"><a className="page-link" href="#">Retroceder</a></li>
                         <li className="page-item"><a className="page-link" href="#">{localStorage.getItem('numeroFase')}</a></li>
                         <li onClick={nextPage} className="page-item"><a className="page-link" href="#">Avanzar</a></li>
                     </ul>
+                </div>
                 </div>
         </>
       )}
