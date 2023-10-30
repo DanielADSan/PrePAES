@@ -21,20 +21,20 @@ const FaseEnsayo = () => {
   const [questionsState, setQuestionsState] = useState([]); // Estado que almacena las preguntas respondidas
   const [question, setQuestion] = useState(null);
   const [questionSinResponder, setQuestionSinResponder] = useState([]);
-  const [numeroFase,setNumeroFase] = useState(parseInt(localStorage.getItem("numeroFase")) || 1);
+  const [numeroFase, setNumeroFase] = useState(parseInt(localStorage.getItem("numeroFase")) || 1);
   const [selectedButton, setSelectedButton] = useState('Fase');
   const [dataStadictisFase, setDataStadictisFase] = useState({
-    category:'',
-    average:0,
+    category: '',
+    average: 0,
   });
-    const handleButtonClick = (button) => {
-        setSelectedButton(button);
-    }
+  const handleButtonClick = (button) => {
+    setSelectedButton(button);
+  }
   const [error, setError] = useState(false);
   const hideLineaProgreso = () => {
     setShowLineaProgreso(false);
   };
-  
+
   useEffect(() => {
     getQuestionsState(parseInt(localStorage.getItem("numeroFase")));
     getStadictisFase();
@@ -43,11 +43,11 @@ const FaseEnsayo = () => {
   }, [numeroFase]);
 
   useEffect(() => {
-    if(questionsState.length >= 10){  
+    if (questionsState.length >= 10) {
       navigate("/MetodoPrePAES");
       console.log('CAMBIO DE FASE')
     }
-  }, [questionsState.length>10]);
+  }, [questionsState.length > 10]);
 
   const getStadictisFase = async () => {
     try {
@@ -57,11 +57,11 @@ const FaseEnsayo = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const { data } = response;	
+      const { data } = response;
       setDataStadictisFase(
         {
-          category:data[0].category,
-          average:data[0].average,
+          category: data[0].category,
+          average: data[0].average,
         }
       );
     } catch (error) {
@@ -104,7 +104,7 @@ const FaseEnsayo = () => {
     }
   };
   useEffect(() => {
-    if(error === true){
+    if (error === true) {
       localStorage.setItem("numeroFase", 1);
       createEssay();
       setError(false);
@@ -117,18 +117,18 @@ const FaseEnsayo = () => {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }).then((response) => {   
+    }).then((response) => {
       const faseActual = parseInt(localStorage.getItem("numeroFase"));
-      localStorage.setItem("numeroFase", faseActual+1);   
-      console.log('createessay')    
+      localStorage.setItem("numeroFase", faseActual + 1);
+      console.log('createessay')
     }).catch((error) => {
       console.log(error)
-    });   
+    });
   };
   useEffect(() => {
     console.log("Preguntas contestadas" + questionsState.length)
-    if (questionsState.length >=10) {
-      createEssay();     
+    if (questionsState.length >= 10) {
+      createEssay();
       navigate("/MetodoPrePAES");
     }
   }, [questionsState]);
@@ -177,7 +177,7 @@ const FaseEnsayo = () => {
   // valor absoluto de un numero = Math.abs(numero)
   // Creamos un array con 8 elementos para renderizar el componente 8 veces
   const cards = Array(Math.abs(9 - questionsState.length)).fill(null).map((_, index) => (
-    <div className='cardBlock'>
+    <div className='card cardBlock'>
       <CardLevel
         key={index} // Asegúrate de proporcionar una clave única para cada elemento en un bucle
         level={index + questionsState.length + 2}
@@ -196,28 +196,28 @@ const FaseEnsayo = () => {
       getDataQuestionPrePAES(questionSinResponder[0]?.question_id);
     }
   }
-  const logicaPreguntaRespondida = (question_id, answer_id) => {      
+  const logicaPreguntaRespondida = (question_id, answer_id) => {
     localStorage.setItem("selectedAnswers", answer_id);
     localStorage.setItem("stateAnswerPrePAES", true);
     getDataQuestionPrePAES(question_id);
   }
   const nextPage = () => {
-    if(questionsState.length >= 10){
-      setNumeroFase(numeroFase+1);
-      localStorage.setItem("numeroFase", numeroFase+1);
+    if (questionsState.length >= 10) {
+      setNumeroFase(numeroFase + 1);
+      localStorage.setItem("numeroFase", numeroFase + 1);
       getQuestionsState(numeroFase);
       console.log('nextpage')
-    }        
-}
-// funcion para retroceder de pagina.
-const previousPage = () => {
-  if(numeroFase > 1){
-    setNumeroFase(numeroFase-1);
-    localStorage.setItem("numeroFase", numeroFase-1);
-    getQuestionsState(numeroFase);
-    console.log('previouspage')
-  }   
-}
+    }
+  }
+  // funcion para retroceder de pagina.
+  const previousPage = () => {
+    if (numeroFase > 1) {
+      setNumeroFase(numeroFase - 1);
+      localStorage.setItem("numeroFase", numeroFase - 1);
+      getQuestionsState(numeroFase);
+      console.log('previouspage')
+    }
+  }
   return (
     <>
       <div className="header">
@@ -227,46 +227,46 @@ const previousPage = () => {
       </div>
       {questionsState.length < 20 && (
         <>
-        <div className='number_phase' >
-        <div className="toggle-button-fase" style={{ gridColumnStart:'2', justifySelf:'center'}}>             
-               <motion.button
-                   className={selectedButton === 'Fase' ? 'Fase active' : 'Fase'}
-                   onClick={() => handleButtonClick('Fase')}
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   transition={{ duration: 0.2 }}
-               >
-                   Fase {parseInt(localStorage.getItem('numeroFase'))}
-               </motion.button>
-               <motion.button
-                   className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
-                   onClick={() => {handleButtonClick('Resumen'); navigate("/ResumenPrePAES")}}
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   transition={{ duration: 0.2 }}
-                   
-               >
-                   Resumen 
-               </motion.button>
-               <motion.div
-                   className="indicator"
-                   layoutId="indicator"
-                   initial={false}
-                   animate={{ x: selectedButton === 'Historial' ? 0 : '50%' }}
-                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                 
-               />
-           </div>
-          {questionsState.length >= 10 && (
-              <div className='arrowfase flechafase' onClick={()=>nextPage()}>
-                <h4 style={{marginTop:'10px'}}>Fase {parseInt(localStorage.getItem('numeroFase')) + 1 }</h4>
+          <div className='number_phase' >
+            <div className="toggle-button-fase" style={{ gridColumnStart: '2', justifySelf: 'center' }}>
+              <motion.button
+                className={selectedButton === 'Fase' ? 'Fase active' : 'Fase'}
+                onClick={() => handleButtonClick('Fase')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                Fase {parseInt(localStorage.getItem('numeroFase'))}
+              </motion.button>
+              <motion.button
+                className={selectedButton === 'Resumen' ? 'Resumen active' : 'Resumen'}
+                onClick={() => { handleButtonClick('Resumen'); navigate("/ResumenPrePAES") }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+
+              >
+                Resumen
+              </motion.button>
+              <motion.div
+                className="indicator"
+                layoutId="indicator"
+                initial={false}
+                animate={{ x: selectedButton === 'Historial' ? 0 : '50%' }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+
+              />
+            </div>
+            {questionsState.length >= 10 && (
+              <div className='arrowfase flechafase' onClick={() => nextPage()}>
+                <h4 style={{ marginTop: '10px' }}>Fase {parseInt(localStorage.getItem('numeroFase')) + 1}</h4>
                 <div className=''>
-                  <Flechafase  />
+                  <Flechafase />
                 </div>
-                
+
               </div>
-          )}     
-        </div>    
+            )}
+          </div>
           <div class="cards" style={{ marginTop: '2.5rem' }}>
             {questionsState.map((qs, index) => (
               <div className='card' onClick={() => logicaPreguntaRespondida(qs.question_id, qs.answer_id)} >
@@ -277,36 +277,36 @@ const previousPage = () => {
                 />
               </div>
             ))}
-                 {questionsState.length <=9 && (
-                  <>
-                  <div className='card cardPlay' onClick={() => logicaPreguntaPrePAES()} >
-              <CardLevel level={questionsState.length + 1} category="Pendiente" isCorrect="play bx bx-play-circle" />
-            </div>
-                 {cards}
-                  </>  
-              )}
+            {questionsState.length <= 9 && (
+              <>
+                <div className='card cardPlay' onClick={() => logicaPreguntaPrePAES()} >
+                  <CardLevel level={questionsState.length + 1} category="Pendiente" isCorrect="play bx bx-play-circle" />
+                </div>
+                {cards}
+              </>
+            )}
           </div>
           <div className='container-info-fase'>
-            
-          <div className='data-tiempo-real'>
-            <div className='data-tiempo-real-item'>
-              <h4>Categoría a Reforzar</h4>
-              <h3>{dataStadictisFase.category}</h3>
+
+            <div className='data-tiempo-real'>
+              <div className='data-tiempo-real-item'>
+                <h4>Categoría a Reforzar</h4>
+                <h3>{dataStadictisFase.category}</h3>
+              </div>
+              <div className='data-tiempo-real-item'>
+                <h4>Nota promedio</h4>
+                <h3>{dataStadictisFase.average}</h3>
+              </div>
             </div>
-            <div className='data-tiempo-real-item'>
-              <h4>Nota promedio</h4>
-              <h3>{dataStadictisFase.average}</h3>
+            <div className='Botones' style={{ gridColumn: '3' }}>
+
+              <ul className="pagination">
+                <li onClick={previousPage} className="page-item"><a className="page-link" href="#">Retroceder</a></li>
+                <li className="page-item"><a className="page-link" href="#">{localStorage.getItem('numeroFase')}</a></li>
+                <li onClick={nextPage} className="page-item"><a className="page-link" href="#">Avanzar</a></li>
+              </ul>
             </div>
           </div>
-          <div className='Botones' style={{gridColumn: '3'}}>
-        
-                    <ul className="pagination">
-                        <li onClick={previousPage}  className="page-item"><a className="page-link" href="#">Retroceder</a></li>
-                        <li className="page-item"><a className="page-link" href="#">{localStorage.getItem('numeroFase')}</a></li>
-                        <li onClick={nextPage} className="page-item"><a className="page-link" href="#">Avanzar</a></li>
-                    </ul>
-                </div>
-                </div>
         </>
       )}
       {!showLineaProgreso && <EnsayoPrePAES onHide={hideLineaProgreso} />}

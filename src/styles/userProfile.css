@@ -65,6 +65,7 @@
     justify-content: center; /*row normal, column se invierte con aling-items*/ /*normal justify horizontal*/
     align-items: flex-start;
     flex-direction: column;
+  
 }
 
 .containerData h4{
@@ -179,3 +180,73 @@
     opacity: 0.3; /* Opacidad reducida para indicar que está desactivado */
     pointer-events: none; /* Desactiva los eventos del mouse para que no se pueda hacer clic */
 }
+
+
+.avatar-container {
+    text-align: center;
+    margin: 0 auto;
+    width: 180px; /* Establece el ancho y alto iguales para crear un círculo */
+    height: 180px;
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde del círculo */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    background-color: #f0f0f0; /* Opcional: establece un fondo de color si lo deseas */
+    cursor: pointer;
+  }
+  
+  .avatar-image {
+    max-width: 100%; /* Asegura que la imagen se ajuste al círculo sin deformarse */
+    max-height: 100%;
+    object-fit: cover; /* Ajusta la imagen manteniendo su relación de aspecto */
+    border-radius: 50%; /* Hace que la imagen también sea un círculo */
+  }
+  
+  .avatar-controls {
+    margin-top: 10px;
+  }
+
+
+  /* Estilos para el modal */
+.avatar-modal {
+    display: block;
+    position:fixed;
+    margin-top: 25rem;
+    width: 100%;
+    
+  }
+  
+  .avatar-modal-content {
+    background-color: var(--light);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .avatar-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .avatar-option {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde del círculo */
+    
+    cursor: pointer;
+    background-color: var(--white);
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  

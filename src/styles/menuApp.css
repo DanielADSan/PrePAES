@@ -677,10 +677,15 @@ body{
     color: var(--dark);
 }
 .profile-photo{
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    margin: 0 1rem;
 }
 .profile .infoo{
     display: flex;

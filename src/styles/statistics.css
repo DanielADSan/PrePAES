@@ -64,15 +64,13 @@
 
 .react-datepicker__input-container{
     border-radius: 6px;
-    border-color: black;
-    border-width: 0.3px;
     z-index: 2;
 }
 
 .react-datepicker__input-container input{
     border-radius: 6px;
     border-color: black;
-    border-width: 0.3px;
+       border: 0.3px solid !important;
     z-index: 2;
 }
 
@@ -80,7 +78,7 @@
     border: groove !important;
     border-radius: 6px;
     border-color: black;
-    border-width: 0.3px;
+    border: 0.3px solid !important;
     color: var(--dark) !important;
 }
 
@@ -88,7 +86,7 @@
     border-radius: 6px;
     border-color: black;
     border: groove !important;
-    border-width: 0.3px;
+    border: 0.3px solid !important;
 }
 
 .calendarIcon{
