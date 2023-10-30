@@ -6,6 +6,7 @@ import axios from 'axios';
 import insignia from '../../images/insignia.png'
 import { Apiurl } from '../../Services/apirest';
 import Logros from './logros/Logros';
+import Avatares from './Avatares';
 
 const ApiurlUsersRetrieveUpdateDestroy = Apiurl + 'user/'
 const ApiurlChangePassword = Apiurl + 'api/change_password_profile/'
@@ -17,7 +18,18 @@ const UserProfile = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [errorTypeData, setErrorTypeData] = useState('');
     const [errorTypePassword, setErrorTypePassword] = useState('');
+    const [selectedAvatar, setSelectedAvatar] = useState(0);
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
+    const [avatar, setAvatar] = useState('');
+    const avatars = [
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698699339/Avatares%20PrePAES/usuario_utpbap.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681866/Avatares%20PrePAES/avatarUno_vfoqgv.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681867/Avatares%20PrePAES/avatarCinco_mpopsp.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681867/Avatares%20PrePAES/avatarDos_vzxl47.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681866/Avatares%20PrePAES/avatarTres_daxlzr.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681866/Avatares%20PrePAES/avatarCuatro_ufwz9f.png',
+        'https://res.cloudinary.com/dohtxxlbe/image/upload/v1698681866/Avatares%20PrePAES/avatarSeis_fuhdnx.png',
+      ];
 
     const toggleSidebar = () => {
         setSidebarActive(prevState => !prevState);
@@ -44,6 +56,8 @@ const UserProfile = () => {
 
         newEmail.value = userData.data.email
         newUserName.value = userData.data.username
+        setAvatar(userData.data.avatar)
+        console.log(userData.data)
     }
 
     async function updateUserData() {
@@ -91,12 +105,14 @@ const UserProfile = () => {
                 const response = await axios.patch(ApiurlUsersRetrieveUpdateDestroy + String(userId) + '/', {
                     email: newEmail.value,
                     username: newUserName.value,
+                    avatar:avatars[selectedAvatar],
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
             } catch (error) {
+                console.log(selectedAvatar)
                 setErrorTypeData('username_email');
                 console.log(error);
             }
@@ -164,7 +180,11 @@ const UserProfile = () => {
                                             <h4 href="email">Email</h4>
                                             <input type="text" name="email" id="email" className="input-group-text" />
                                         </div>
-                                        <button type="button" className="btn-perfil btn btn-outline-dark updateButton" onClick={() => { updateUserData(); updatePassword(); togglePopup() }}>Guardar cambios</button>
+                                        <div className='containerData' style={{alignSelf:'center', alignItems:'center'}}>
+                                            <h4 href="avatar">Avatar</h4>
+                                            <Avatares const selectedAvatar = {selectedAvatar} setSelectedAvatar = {setSelectedAvatar} avatar = {avatar}/>
+                                        </div>
+                                       
 
                                     </div>
                                     <div className='containerSpace'>
@@ -181,6 +201,7 @@ const UserProfile = () => {
                                             <h4 href="password">Repita nueva contraseña</h4>
                                             <input type="text" name="passwordNew2" id="passwordNew2" className="input-group-text" />
                                         </div>
+                                        <button type="button" className="btn-perfil btn btn-outline-dark updateButton" onClick={() => { updateUserData(); updatePassword(); togglePopup() }}>Guardar cambios</button>
                                     </div>
 
                                     {showPopup && (
