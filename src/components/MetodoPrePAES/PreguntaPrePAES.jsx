@@ -7,6 +7,8 @@ import axios from "axios";
 import { Apiurl } from "../../Services/apirest";
 import Sidebar from '../Sidebar'
 import Navbar from '../Navbar'
+import { corregirOrtografia } from "../../helper/Ortografía";
+
 const PreguntaPrePAES = () => {
   const urlSubmitErrors = Apiurl + "questions_error/";
   const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
@@ -139,7 +141,7 @@ const PreguntaPrePAES = () => {
                 <div className="row ">
             <div className="col-md-11 mt-3">
               <h3 style={{color:'var(--dark)'}}>
-                {question.subject}
+                {corregirOrtografia(question.subject)}
               </h3>
             </div>
             <div className="col-md-1">
