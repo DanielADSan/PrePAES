@@ -7,7 +7,7 @@ import EnsayoPrePAES from './PreguntaPrePAES';
 import { useNavigate } from 'react-router-dom';
 import Flechafase from '../../icons/Flechafase';
 import { motion } from "framer-motion"
-import { parseJSON } from 'jquery';
+import { corregirOrtografia } from '../../helper/Ortografía';
 
 const FaseEnsayo = () => {
   const navigate = useNavigate();  // Get the navigate function
@@ -291,7 +291,7 @@ const FaseEnsayo = () => {
             <div className='data-tiempo-real'>
               <div className='data-tiempo-real-item'>
                 <h4>Categoría a Reforzar</h4>
-                <h3>{dataStadictisFase.category}</h3>
+                <h3>{dataStadictisFase.category == 0 ? 'Ninguna' : corregirOrtografia(dataStadictisFase.category)}</h3>
               </div>
               <div className='data-tiempo-real-item'>
                 <h4>Nota promedio</h4>

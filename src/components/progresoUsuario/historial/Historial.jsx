@@ -2,7 +2,7 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import VerDatosHistorial from './VerDatosHistorial';
 import { useLocation, useParams } from 'react-router-dom';
-
+import { corregirOrtografia } from '../../../helper/Ortografía';
 const Historial = ({items}) => {
     const [search, setSearch] = React.useState('');
     const [selectFiltro, setSelectFiltro] = React.useState('4');
@@ -205,7 +205,7 @@ const Historial = ({items}) => {
 
                     {BusquedaNombre().map((ensayo, index) => (
                         <div className='info' key={index}>
-                            <div className='list-info'>{ensayo.name}</div>
+                            <div className='list-info'>{corregirOrtografia(ensayo.name)}</div>
                             <div className='list-info'>{ensayo.puntaje}</div>
                             <div className='list-info'>{ensayo.is_custom ? 'Si' : 'No'}</div>
                             <div className='list-info'>{ensayo.date}</div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react' /*por defecto, useEffect rederiza to
 import LinesChart from './lineChart';
 import { Apiurl } from '../../../Services/apirest';
 import axios from 'axios';
+import { corregirOrtografia } from '../../../helper/Ortografía';
 const user_id = localStorage.getItem('user_id');
 const ApiEssayLast5 = Apiurl + 'recent_essay_resume/' + user_id + '/';
 const ApiEssayMostRecent = Apiurl + 'recent_essay/' + user_id + '/';
@@ -157,7 +158,7 @@ const Statistics = () => {
                         
                             {five_essay_ul.length !== 0 &&  five_essay_ul.map((ensayo, index) => (
                                 <tr key={index}>
-                                    <td><p>{ensayo.name}</p></td>
+                                    <td><p>{corregirOrtografia(ensayo.name)}</p></td>
                                     <td>{ensayo.date}</td>
                                     <td>{ensayo.puntaje}</td>
                                 </tr>

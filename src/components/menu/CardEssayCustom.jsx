@@ -4,8 +4,7 @@ import essaycustom from "../../images/customessay.png";
 import botPrePAES from "../../images/botPrePAES.png";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import Essay from "../essay/Essay";
-
+import { corregirOrtografia } from "../../helper/Ortografía";
 
 const CardEssayCustom = () => {
   const token = localStorage.getItem("token");
@@ -25,6 +24,7 @@ const CardEssayCustom = () => {
   const [firstEssayType, setFirstEssayType] = useState([]);
   const [shouldShowError, setShouldShowError] = useState(false);
   const [spinner, setSpinner] = useState(true);
+  
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
     if (formData.cantidadPreguntas) {
@@ -147,11 +147,11 @@ const CardEssayCustom = () => {
               <i class='bx bx-x exitPopup' onClick={() => { setShowPopup(false) }}></i>
             </div>
             <h1 style={{ fontWeight: "bold" }}>{essayTemario}</h1>
-            <p style={{fontSize:'20px', marginTop:'1rem'}}>Este ensayo consta de <b>{essayCurrent}</b> preguntas y el temario será de: <b>{firstEssayType.math_type_type}{essayType.map((types)=>{
+            <p style={{fontSize:'20px', marginTop:'1rem'}}>Este ensayo consta de <b>{essayCurrent}</b> preguntas y el temario será de: <b>{corregirOrtografia(firstEssayType.math_type_type) }{essayType.map((types)=>{
                 return(
-                  <span>, {types.math_type_type}</span>
+                  <span>, {corregirOrtografia(types.math_type_type)}</span>
                 )
-              })} y {essayLastType.math_type_type}.</b></p>
+              })} y {corregirOrtografia(essayLastType.math_type_type)}.</b></p>
 
             <h3>¿Desea iniciar el ensayo?</h3>
             <div className="popup-buttons">

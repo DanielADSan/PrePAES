@@ -344,7 +344,7 @@ function CrearEnsayo() {
                         value={"Numeros"}
                       ></input>
                       <label className="form-check-label" htmlFor="2">
-                        Numeros
+                        Números
                       </label>
                     </div>
                     <div className="checkbox-container checkbox-categoria">
@@ -357,7 +357,7 @@ function CrearEnsayo() {
                         value={"Algebra"}
                       ></input>
                       <label className="form-check-label" htmlFor="1">
-                        Algebra y funciones
+                        Álgebra y funciones
                       </label>
                     </div>
                     <div className="checkbox-container checkbox-categoria d-f">
@@ -371,7 +371,7 @@ function CrearEnsayo() {
                       
                       ></input>
                       <label className="form-check-label" htmlFor="4">
-                        Geometria
+                        Geometría
                       </label>
                     </div>
                     <div className="checkbox-container checkbox-categoria">
@@ -384,7 +384,7 @@ function CrearEnsayo() {
                         value={"Probabilidades"}
                       ></input>
                       <label className="form-check-label" htmlFor="3">
-                        Probabilidades y Estadistica
+                        Probabilidades y Estadística
                       </label>
                     </div>
                   </div>
