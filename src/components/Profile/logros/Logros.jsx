@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Apiurl } from '../../../Services/apirest';
 import axios from 'axios'
 const Logros = () => {
-    const urlGetLogros = `${Apiurl}/achievment_user/`
+    const urlGetLogros = `${Apiurl}achievment_user/`
     const [logros, setLogros] = useState([])
     useEffect(() => {
         const token = localStorage.getItem('token')
