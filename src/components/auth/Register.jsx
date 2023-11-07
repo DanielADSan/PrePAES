@@ -149,8 +149,32 @@ class Register extends Component {
 
   render() {
     return (
-      <body className="cuerpoLogin">
-     
+      <div className="cuerpoLogin">
+        <header className="header_section" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                        <div className="container-fluid">
+                            <nav className="navbar navbar-expand-lg custom_nav-container ">
+                                <a className="navbar-brand" href="./">
+                                    <span>PRE</span><span style={{ color: 'orange' }} >PAES</span>
+                                </a>
+
+                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className=""> </span>
+                                </button>
+
+                                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul className="navbar-nav  ml-auto">
+                                        <li className="nav-item active">
+                                            <a className="nav-link" href="./">Inicio </a>
+                                        </li>
+
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/Login">Iniciar Sesión</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </header>
         <form className="formulario" id="formularioL" onSubmit={this.manejadorSubmit}>
           <h1 className="hero_register"><p>Registro</p></h1>
           <div className="contenedorRegister">
@@ -212,7 +236,7 @@ class Register extends Component {
             </p>
           </div>
         </form>
-      </body>
+      </div>
     );
   }
 }

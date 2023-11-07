@@ -20,6 +20,7 @@ import '../../styles/essay.css'
 import { useNavigate } from 'react-router-dom';
 
 const UrlSubmitAnswers = Apiurl + "submit_answers/";
+const urlSubmitQuestions = Apiurl + "submit_questions/";
 const urlSubmitErrors = Apiurl + "questions_error/";
 
 function Essay(props) {
@@ -76,6 +77,9 @@ function Essay(props) {
   const [showPopup, setShowPopup] = useState(false);
   const [showFormError, setShowFormError] = useState(false);
   const [questionError, setQuestionError] = useState('');
+  const [questionsId, setQuestionsId] = useState(
+    props.ensayo.map((item) => item.id)
+  );
   const [formDataError, setFormDataError] = useState({
     type_error: '',
     message: '',
@@ -164,7 +168,11 @@ function Essay(props) {
         console.log(error);
       });
   }
-
+  useEffect(() => {
+    console.log('estas son los id de las preguntas: '+questionsId)
+    console.log('estas son las respuestas: '+respuestaId)
+    
+  }, [respuestaId]);
   function handleAnswerSubmit(isCorrect, e, res, id, tituloP) {  // FUNCION AL MARCAR ALTERNATIVA 
     setRespuesta((current) => {
       const newRespuestas = [...current];
@@ -228,11 +236,28 @@ function Essay(props) {
             Authorization: `Bearer ${token}`
           }
         });
+
         console.log(props.ensayo.length)
         console.log(response.data);
       } catch (error) {
         console.log(error);
       }
+      try {
+        const response = await axios.post(urlSubmitQuestions, {
+          question_ids: questionsId, // [16,11,null,7,3]
+          user_essay_id: new_id,
+      
+          //completa el codigo
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('se mando genial adsasda');
+      } catch (error) {
+        console.log(error);
+      }
+
     }
   }
   function handleClickNav(j) {

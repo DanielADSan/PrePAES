@@ -111,6 +111,8 @@ const UserProfile = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                //recargar pagina
+                window.location.reload();
             } catch (error) {
                 console.log(selectedAvatar)
                 setErrorTypeData('username_email');

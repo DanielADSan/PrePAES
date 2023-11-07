@@ -53,34 +53,34 @@ const Home = () => {
                         </nav>
                     </div>
                 </header>
-                <section class="slider_section ">
-                    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="container ">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="detail-box">
+                <section className="slider_section ">
+                    <div id="customCarousel1" className="carousel slide" data-ride="carousel">
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <div className="container ">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="detail-box">
                                                 <h1>
                                                     Prepárate con <br></br>
                                                     <span style={{ color: 'white' }}>PRE<span style={{ color: 'orange' }}>PAES</span></span>
                                                 </h1>
                                                 <p>
                                                     Nuestra plataforma está diseñada para ayudarte a preparar y alcanzar un excelente desempeño en la PAES de matemáticas.</p>
-                                                <div class="btn-box">
-                                                    <a href="/Register" class="btn-1">
+                                                <div className="btn-box">
+                                                    <a href="/Register" className="btn-1">
                                                         Registrarse
                                                     </a>
-                                                    <a href="/Login" class="btn-2">
+                                                    <a href="/Login" className="btn-2">
                                                         Iniciar Sesión
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class=" col-lg-10 mx-auto">
-                                                    <div class="img-box" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <div className="col-md-6">
+                                            <div className="row">
+                                                <div className=" col-lg-10 mx-auto">
+                                                    <div className="img-box" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                         <img style={{ borderRadius: '20px', width: '80%' }} src={heroImage} alt="" />
                                                     </div>
                                                 </div>
@@ -241,7 +241,7 @@ const Home = () => {
                                 <img src={inicioPAES} alt="" />
                                 <div className="play_btn">
                                     <button>
-                                        <i class='bx bx-play bx-flip-vertical' ></i>
+                                        <i className='bx bx-play bx-flip-vertical' ></i>
                                     </button>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@ const Home = () => {
                                         <input type="email" placeholder="Correo" />
                                     </div>
                                     <div>
-                                        <input type="text" class="message-box" placeholder="Mensaje" />
+                                        <input type="text" className="message-box" placeholder="Mensaje" />
                                     </div>
                                     <div className="btn_box ">
                                         <button>

@@ -112,7 +112,7 @@ class Login extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <body className="cuerpoLogin">
+                <div className="cuerpoLogin">
                     <header className="header_section" style={{ fontFamily: 'Roboto, sans-serif' }}>
                         <div className="container-fluid">
                             <nav className="navbar navbar-expand-lg custom_nav-container ">
@@ -158,7 +158,7 @@ class Login extends React.Component {
 
                             <button type="button" id="login" className="button" onClick={this.manejadorBoton}>Iniciar Sesión</button>
                             {this.state.error === true &&
-                                <div className="alert alert-danger mt-3" role="alert">
+                                <div className="alert alert-danger mt-3 text" role="alert">
                                     {this.state.errorMsg}
                                 </div>
                             }
@@ -169,7 +169,7 @@ class Login extends React.Component {
                         </div>
                     </form>
 
-                </body>
+                </div>
             </React.Fragment>
         );
     }
