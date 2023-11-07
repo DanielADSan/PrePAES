@@ -86,3 +86,9 @@
   }
   
   
+
+
+  .cargando{
+    transform: rotate(360deg);
+    animation: rotation 2s infinite linear;
+  }

@@ -58,7 +58,7 @@ const GetEssay = () => {
           <div  className="shapeContainer" >
            
           
-          <div class="shapes-9"></div>
+          <div className="shapes-9"></div>
           <h2>Generando Ensayo</h2>
           </div>
         )}

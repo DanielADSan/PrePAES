@@ -20,6 +20,7 @@ import ResumenPrePAES from './components/MetodoPrePAES/ResumenPrePAES';
 import PuntajeDeCorte from './components/puntaje-de-corte/PuntajeDeCorte';
 import Reset from './components/auth/ResetPassword';
 import ChangePassword from './components/auth/ChangePassword';
+import Notificaciones from './components/menuAdmin/Notificaciones';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="Register" element={<Register />} />
           <Route path="Reset" element={<Reset />} />
           <Route path="Reset/Password/:uid/:token/" element={<ChangePassword />} />
+          <Route path="Notificaciones" element={<Notificaciones />} />
 
         </Routes>
       </BrowserRouter>
