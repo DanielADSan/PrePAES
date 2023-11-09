@@ -85,7 +85,8 @@ function Essay(props) {
     message: '',
     question: questionError,
   });//[
-  const [respuestaId, setRespuestaId] = useState([]);
+  const [respuestaId, setRespuestaId] = useState(
+    JSON.parse(localStorage.getItem('respuestaId')) ||[]);
   const [respuestaaa, setRespuesta] = useState(
     JSON.parse(localStorage.getItem("respuesta")) || []);
 
@@ -134,6 +135,10 @@ function Essay(props) {
   useEffect(() => {
     localStorage.setItem("tituloPregunta", JSON.stringify(tituloPregunta));
   }, [tituloPregunta]);
+
+  useEffect(() => {
+    localStorage.setItem('respuestaId', JSON.stringify(respuestaId));
+  }, [respuestaId]);
   useEffect(() => {
     localStorage.setItem("respuesta", JSON.stringify(respuestaaa));
   }, [respuestaaa]);
@@ -156,18 +161,7 @@ function Essay(props) {
     const fecha = new Date();
     setFechaActual(fecha.toLocaleDateString());
   }, []);
-  function enviarDatos(respuestasId, essayId, tiempoUsuario) {
-    axios.post(UrlSubmitAnswers, {
-      answer_ids: respuestasId,
-      essay_id: essayId
-    })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+
   useEffect(() => {
     console.log('estas son los id de las preguntas: '+questionsId)
     console.log('estas son las respuestas: '+respuestaId)
@@ -402,7 +396,7 @@ function Essay(props) {
                   </ul>
                   <div className="d-flex justify-content-end widht-100 ">
                     <button
-                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"))}
+                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"),localStorage.removeItem("respuestaId"),localStorage.removeItem("new_id"),localStorage.removeItem("ensayoActivo"))}
                       type="button"
                       className="btn btn-outline-dark btn-lg m-2"
                       id="bot"
