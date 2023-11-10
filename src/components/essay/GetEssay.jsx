@@ -10,7 +10,7 @@ const GetEssay = () => {
   const location = useLocation();
   const tema = location.pathname.split('/')[2]; // Obtenemos el valor del tercer segmento de la URL
 
-  const ApiUrl = Apiurl + "questions_alternative/?subject=" + tema;
+  const ApiUrl = Apiurl + "questions_types/"+tema+"/" +10+'/';
   const [post, setPost] = React.useState([]);
   const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
   const [iniciar, setIniciar] = React.useState(false);
