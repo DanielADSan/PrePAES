@@ -9,6 +9,7 @@ import algebra from "../../images/algebra.png";
 import geometria from "../../images/geometria.png";
 import numeros from "../../images/numeros.png";
 import probabilidad from "../../images/probabilidad.png";
+import signo from "../../images/signo.png";
 import { Apiurl } from "../../Services/apirest"
 const ResumenPrePAES = () => {
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
@@ -93,18 +94,18 @@ const ResumenPrePAES = () => {
                     <ul className="insights">
                        
                             <li >
-                            <img className="bx" src={peorCategoria === "numeros" ? numeros : peorCategoria === "algebra" ? algebra : peorCategoria === "geometria" ? geometria : peorCategoria === "probabilidades" ? probabilidad : mejorCategoria} />
+                            <img className="bx" src={peorCategoria === "numeros" ? numeros : peorCategoria === "algebra" ? algebra : peorCategoria === "geometria" ? geometria : peorCategoria === "probabilidades" ? probabilidad : signo} />
                                 <span className="info">
-                                    <h3>{peorCategoria === "numeros" ? "Números" : peorCategoria === "algebra" ? "Álgebra y Funciones" : peorCategoria === "geometria" ? "Geometría" : peorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}</h3>
+                                    <h3>{peorCategoria === "numeros" ? "Números" : peorCategoria === "algebra" ? "Álgebra y Funciones" : peorCategoria === "geometria" ? "Geometría" : peorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Aún no existe"}</h3>
                                     <p>Categoría más Debil</p>
                                 </span>
 
                             </li>
                             <li >
                                 {/*<img className="bx" src={} />+*/}
-                                <img className="bx" src={mejorCategoria === "numeros" ? numeros : mejorCategoria === "algebra" ? algebra : mejorCategoria === "geometria" ? geometria : mejorCategoria === "probabilidades" ? probabilidad : mejorCategoria} />
+                                <img className="bx" src={mejorCategoria === "numeros" ? numeros : mejorCategoria === "algebra" ? algebra : mejorCategoria === "geometria" ? geometria : mejorCategoria === "probabilidades" ? probabilidad : signo} />
                                 <span className="info">
-                                    <h3>{mejorCategoria === "numeros" ? "Números" : mejorCategoria === "algebra" ? "Álgebra y Funciones" : mejorCategoria === "geometria" ? "Geometría" : mejorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Ensayo General"}</h3>
+                                    <h3>{mejorCategoria === "numeros" ? "Números" : mejorCategoria === "algebra" ? "Álgebra y Funciones" : mejorCategoria === "geometria" ? "Geometría" : mejorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Aún no existe"}</h3>
                                     <p>Categoría más Fuerte</p>
                                 </span>
 

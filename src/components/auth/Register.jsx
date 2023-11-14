@@ -230,8 +230,8 @@ class Register extends Component {
             )}
             {this.state.spinner === true &&
               <div className="spinner loading" style={{ marginTop: '1rem' }}></div>}
-            <p className="pLogin mt-3">Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-            <p className="pLogin">
+           
+            <p className="pLogin mt-3">
               ¿Ya tienes una cuenta? <a className="link" href="./Login">Iniciar Sesion</a>
             </p>
           </div>

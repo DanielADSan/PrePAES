@@ -82,7 +82,7 @@ const ChangeUsers = () => {
 
                     if (error.response.status == 400){
                         setErrorEmail(true);
-                        setErrorEmailMsg("El email ingresado ya se encuentra en uso!");
+                        setErrorEmailMsg(error.response.data['message']);
                         setTimeout(() => {
                             setErrorEmail(false);
                         }, 2000);
