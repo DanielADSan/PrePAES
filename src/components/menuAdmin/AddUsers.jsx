@@ -18,12 +18,18 @@ const AddUsers = () => {
     const [formErrorPassword, setFormErrorPassword] = useState(false);//permite ver si el formulario esta incompleto
     const [formErrorEmail, setFormErrorEmail] = useState(false);//permite ver si el formulario esta incompleto
 
+    const [errorEmailMsg, setErrorEmailMsg] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+    const [errorPasswordMsg, setErrorPasswordMsg] = useState("");
+    const [alertMsg, setalertMsg] = useState("");
+
     const token = localStorage.getItem("token");
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!username || !email || !password || !password2) {
             setFormError(true); // Establecer el estado de formError a true si algún campo está vacío
+            setErrorMsg("Todos los campos son necesarios.");
             setTimeout(() => {
                 setFormError(false);
             }, 2000); // Desaparecer el mensaje después de 2 segundos
@@ -32,6 +38,7 @@ const AddUsers = () => {
 
         if (password != password2) {
             setFormErrorPassword(true); // Establecer el estado de formError a true si algún campo está vacío
+            setErrorPasswordMsg("Las contraseñas deben ser iguales.")
             setTimeout(() => {
                 setFormErrorPassword(false);
             }, 2000); // Desaparecer el mensaje después de 2 segundos
@@ -47,6 +54,7 @@ const AddUsers = () => {
             },
         }).then(response => {
             setFormSubmitted(true); // Establecer el estado de formSubmitted a true después de enviar el formulario
+            setalertMsg("¡El usuario se ha creado correctamente!");
             setTimeout(() => {
                 setFormSubmitted(false);
             }, 2000); // Desaparecer el mensaje después de 2 segundos
@@ -54,6 +62,7 @@ const AddUsers = () => {
         .catch(error => {
             if (error.response.status == 400){
                 setFormErrorEmail(true);
+                setErrorEmailMsg(error.response.data['message']);
                 setTimeout(() => {
                     setFormErrorEmail(false);
                 }, 2000);
@@ -101,22 +110,22 @@ const AddUsers = () => {
 
                         {formError && (
                             <div className="alert alert-danger mt-4" role="alert">
-                                Todos los campos son necesarios.
+                                {errorMsg}
                             </div>
                         )}
                         {formErrorPassword && (
                             <div className="alert alert-danger mt-4" role="alert">
-                                Las contraseñas deben ser iguales.
+                                {errorPasswordMsg}
                             </div>
                         )}
                         {formErrorEmail && (
                             <div className="alert alert-danger mt-4" role="alert">
-                                El correo electronico ingresado ya esta en uso.
+                                {errorEmailMsg}
                             </div>
                         )}
                         {formSubmitted && (
                             <div className="alert alert-success mt-4" role="alert">
-                                ¡El formulario se ha enviado correctamente!
+                                {alertMsg}
                             </div>
                         )}
                         <button type="submit" className="btn  btn-warning mb-2 p-2 mt-4  ">Añadir Usuario</button>

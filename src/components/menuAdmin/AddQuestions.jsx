@@ -12,6 +12,8 @@ const AddQuestions = () => {
     const [subject, setSubject] = useState("");
     const [idSubject, setIdSubject] = useState(0);
     const [linkResolution, setLinkResolution] = useState("");
+    const [errorLink, setErrorLink] = useState(false);
+    const [errorLinkMsg, setErrorLinkMsg] = useState("");
     const [answer1, setAnswer1] = useState({ label: "", right: "" });
     const [answer2, setAnswer2] = useState({ label: "", right: "" });
     const [answer3, setAnswer3] = useState({ label: "", right: "" });
@@ -39,7 +41,27 @@ const AddQuestions = () => {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-        });
+        }).then(response => {
+            setFormSubmitted(true); // Establecer el estado de formSubmitted a true después de enviar el formulario
+            setTimeout(() => {
+                setFormSubmitted(false);
+            }, 2000); // Desaparecer el mensaje después de 2 segundos
+        })
+        .catch(error => {
+                
+                if (error.response.status == 400){
+                    setErrorLink(true);
+                    setErrorLinkMsg(error.response.data['message']);
+                    setTimeout(() => {
+                        setErrorLink(false);
+                    }, 2000);
+                }
+                    
+
+                console.log(error.response.data);
+        });    
+        
+        
         const questionId = response.data.id;
 
         const answers = [answer1, answer2, answer3, answer4];
@@ -50,7 +72,7 @@ const AddQuestions = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-        });
+        });    
         setFormSubmitted(true); // Establecer el estado de formSubmitted a true después de enviar el formulario
         setTimeout(() => {
             setFormSubmitted(false);
@@ -177,6 +199,11 @@ const AddQuestions = () => {
                         {formError && (
                             <div className="alert alert-danger mt-4" role="alert">
                                 Todos los campos son necesarios.
+                            </div>
+                        )}
+                        {errorLink && (
+                            <div className="alert alert-danger mt-4" role="alert">
+                                {errorLinkMsg}
                             </div>
                         )}
                         {formSubmitted && (

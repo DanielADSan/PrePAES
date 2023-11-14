@@ -14,6 +14,12 @@ const ChangeQuestions = () => {
         "question": "",
         "link_resolution": ""
     });
+    const [alert, setAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
+    const [errorLink, setErrorLink] = useState(false);
+    const [errorLinkMsg, setErrorLinkMsg] = useState("");
+    const [errorNotFound, setErrorNotFound] = useState(false);
+    const [errorNotFoundMsg, setErrorNotFoundMsg] = useState("");
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [questions, setQuestions] = useState([]);
@@ -40,21 +46,47 @@ const ChangeQuestions = () => {
     };
 
     const manejadorBoton = () => {
-        const url = Apiurl + "questions/" + form.id + "/";
-        axios.put(url, form, {
-            headers: {
-                Authorization: `Bearer ${token}` // Agrega el token en los headers
-            }
-        })
-            .then(response => {
-                console.log(response.data);
-                setError(true);
-                setErrorMsg("Cambio exitoso!");
+        if (!form.id || !form.question || !form.link_resolution) {
+            setError(true);
+            setErrorMsg("Todos los campos son necesarios.");
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+            return
+        }
+        else{
+            const url = Apiurl + "questions/" + form.id + "/";
+            axios.put(url, form, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Agrega el token en los headers
+                }
+            }).then(response => {
+                setAlert(true);
+                setAlertMsg("Cambio exitoso!");
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
                 cargarListado(); // Llama a cargarListado para actualizar la tabla
-            })
-            .catch(error => {
+            }).catch(error => {
+
+                if (error.response.status == 404){
+                    setErrorNotFound(true);
+                    setErrorNotFoundMsg("Pregunta no encontrada verifique el id!");
+                    setTimeout(() => {
+                        setErrorNotFound(false);
+                    }, 2000);
+                }
+                
+                if (error.response.status == 400){
+                    setErrorLink(true);
+                    setErrorLinkMsg(error.response.data['message']);
+                    setTimeout(() => {
+                            setErrorLink(false);
+                    }, 2000);
+                }
                 console.log(error.response.data);
-            });
+            });  
+        } 
     };
 
     useEffect(() => {
@@ -69,6 +101,7 @@ const ChangeQuestions = () => {
                 setTotalPaginas(Math.ceil(response.data.length / itemsPorPagina - 1));
                 setStatus(true);
                 setError(false);
+                setErrorLink(false);
                 console.log(questions)
             });
     }, [status]);
@@ -118,11 +151,11 @@ const ChangeQuestions = () => {
             });
             setQuestions(response.data);
             setStatus(true);
-            setError(true);
-            setErrorMsg('Cambio exitoso!');
+            setAlert(true);
+            setAlertMsg('Cambio exitoso!');
             setTimeout(() => {
-                setError(false);
-                setErrorMsg('');
+                setAlert(false);
+                setAlertMsg('');
             }, 2000); // Desaparecer el mensaje después de 2 segundos
         } catch (error) {
             console.log(error.response.data);
@@ -138,10 +171,10 @@ const ChangeQuestions = () => {
             });
             setAlternatives(response.data.answer);
             setShowPopup(true);
-            setErrorMsg('Cambio exitoso!');
+            setAlertMsg('Cambio exitoso!');
             setTimeout(() => {
-                setError(false);
-                setErrorMsg('');
+                setAlert(false);
+                setAlertMsg('');
             }, 2000); // Desaparecer el mensaje después de 2 segundos
         } catch (error) {
             console.log(error.response.data);
@@ -368,12 +401,27 @@ const ChangeQuestions = () => {
                         <div className="form-group">
                             <div className="col-sm-offset-2 ">
                                 <button type="button" className="btn btn-dark mt-2" onClick={manejadorBoton}>Modificar</button>
-                                {error === true && (
+                                {alert === true && (
                                     <div className="alert alert-success mt-3" role="alert">
+                                        {alertMsg}
+                                    </div>
+                                )}
+                                {error === true && (
+                                    <div className="alert alert-danger mt-3" role="alert">
                                         {errorMsg}
                                     </div>
                                 )}
-                            </div>
+                                {errorLink === true && (
+                                    <div className="alert alert-danger mt-4" role="alert">
+                                        {errorLinkMsg}
+                                    </div>
+                                )}
+                                {errorNotFound === true && (
+                                    <div className="alert alert-danger mt-4" role="alert">
+                                        {errorNotFoundMsg}
+                                    </div>
+                                )}
+                            </div> 
                         </div>
                     </form>                              
                         
