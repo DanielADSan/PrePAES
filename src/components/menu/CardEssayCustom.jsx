@@ -106,7 +106,9 @@ const CardEssayCustom = () => {
       localStorage.setItem("essayTemario", essayTemario);
       setFormData({ cantidadPreguntas, ensayosArray });
       localStorage.removeItem("ensayo");
-      localStorage.removeItem("questionsId")
+      localStorage.removeItem("questionsId");
+      localStorage.removeItem("selectedAnswers");
+      localStorage.removeItem("respuestaId");
       console.log(response.data);
       await new Promise(resolve => setTimeout(resolve, 100));
       navigate(`/CrearEnsayoTest/${essayTemario}/${response.data.id}`)

@@ -111,6 +111,7 @@ function CrearEnsayo() {
   }, [ensayoSelected]);
   const mostrarData = () => {
 
+    
     let seleccionados = 0;
 
     for (let i in ensayoSelected) {
@@ -118,11 +119,13 @@ function CrearEnsayo() {
         seleccionados++;
       }
     }
-
-   
       // Actualizar el estado de formData
+      
       setFormData({ cantidadPreguntas, ensayosArray });
       localStorage.removeItem('ensayo');
+      localStorage.removeItem("questionsId");
+      localStorage.removeItem("selectedAnswers");
+      localStorage.removeItem("respuestaId");
       setShowMostrarData(true);
  
   };

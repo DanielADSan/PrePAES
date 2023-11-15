@@ -8,7 +8,7 @@ import { Apiurl } from '../../Services/apirest';
 import Logros from './logros/Logros';
 import Avatares from './Avatares';
 
-const ApiurlUsersRetrieveUpdateDestroy = Apiurl + 'user/'
+const ApiurlUsersRetrieveUpdateDestroy = Apiurl + 'users/'
 const ApiurlChangePassword = Apiurl + 'api/change_password_profile/'
 const ApiUserData = Apiurl + 'api/profile/'
 
