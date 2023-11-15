@@ -77,7 +77,7 @@ function Essay(props) {
   const [showPopup, setShowPopup] = useState(false);
   const [showFormError, setShowFormError] = useState(false);
   const [questionError, setQuestionError] = useState('');
-  const [questionsId, setQuestionsId] = useState(
+  const [questionsId, setQuestionsId] = useState( JSON.parse(localStorage.getItem('questionsId')) ||
     props.ensayo.map((item) => item.id)
   );
   const [formDataError, setFormDataError] = useState({
@@ -137,6 +137,10 @@ function Essay(props) {
   }, [tituloPregunta]);
 
   useEffect(() => {
+    localStorage.setItem('questionsId', JSON.stringify(questionsId));
+  }, [questionsId]);
+
+  useEffect(() => {
     localStorage.setItem('respuestaId', JSON.stringify(respuestaId));
   }, [respuestaId]);
   useEffect(() => {
@@ -163,7 +167,7 @@ function Essay(props) {
   }, []);
 
   useEffect(() => {
-    console.log('estas son los id de las preguntas: '+questionsId)
+    console.log('estas son los id de las preguntas: '+localStorage.getItem('questionsId'))
     console.log('estas son las respuestas: '+respuestaId)
     
   }, [respuestaId]);
@@ -396,7 +400,7 @@ function Essay(props) {
                   </ul>
                   <div className="d-flex justify-content-end widht-100 ">
                     <button
-                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"),localStorage.removeItem("respuestaId"),localStorage.removeItem("new_id"),localStorage.removeItem("ensayoActivo"))}
+                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"),localStorage.removeItem("respuestaId"),localStorage.removeItem("new_id"),localStorage.removeItem("ensayoActivo"), localStorage.removeItem("questionsId"))}
                       type="button"
                       className="btn btn-outline-dark btn-lg m-2"
                       id="bot"

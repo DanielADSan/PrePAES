@@ -54,6 +54,7 @@ const CardEssay = () => {
       localStorage.setItem("new_id", response.data.id);
       localStorage.setItem("essayTemario", essayTemario);
       localStorage.removeItem("ensayo");
+      localStorage.removeItem("questionsId");
       console.log(response.data);
       navigate(`/Ensayos/${essayUrl}/${response.data.id}`)
      
