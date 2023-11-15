@@ -31,7 +31,7 @@ git clone https://github.com/your_username/PrePAES.git
 cd PrePAES
 ```
 
-2. **Instalar dependencias:**
+2. **Instalar dependencias (asegúrese de tener Node.js instalado):**
 
 ```bash
 npm install
