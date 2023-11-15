@@ -109,6 +109,7 @@ const CardEssayCustom = () => {
       localStorage.removeItem("questionsId");
       localStorage.removeItem("selectedAnswers");
       localStorage.removeItem("respuestaId");
+      localStorage.removeItem("isFinished");
       console.log(response.data);
       await new Promise(resolve => setTimeout(resolve, 100));
       navigate(`/CrearEnsayoTest/${essayTemario}/${response.data.id}`)

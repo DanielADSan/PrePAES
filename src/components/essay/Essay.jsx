@@ -56,7 +56,7 @@ function Essay(props) {
   const [puntuación, setPuntuacion] = useState(
     JSON.parse(localStorage.getItem("puntuacion")) || ""
   );
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState( JSON.parse(localStorage.getItem('isFinished'))||false);
   const [ensayo, setEnsayo] = useState(
     JSON.parse(localStorage.getItem("ensayo")) || props.ensayo
   );
@@ -150,6 +150,9 @@ function Essay(props) {
   useEffect(() => {
     localStorage.setItem("respuesta", JSON.stringify(respuestaaa));
   }, [respuestaaa]);
+  useEffect(() => {
+    localStorage.setItem("isFinished", JSON.stringify(isFinished));
+  }, [isFinished]);
   useEffect(() => {
     localStorage.setItem("tiempoRestante", tiempoRestante.toString());
   }, [tiempoRestante]);

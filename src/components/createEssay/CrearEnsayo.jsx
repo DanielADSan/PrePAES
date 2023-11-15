@@ -126,6 +126,7 @@ function CrearEnsayo() {
       localStorage.removeItem("questionsId");
       localStorage.removeItem("selectedAnswers");
       localStorage.removeItem("respuestaId");
+      localStorage.removeItem("isFinished");
       setShowMostrarData(true);
  
   };
