@@ -18,7 +18,9 @@ PrePAES es una aplicación web educativa diseñada para ayudar a los estudiantes
 
 ## Screenshots
 
-![mockups](https://github.com/DanielADSan/PrePAES/assets/139416405/b8590562-29aa-4082-b80a-acbdba580e8b)
+<img src="https://github.com/DanielADSan/PrePAES/assets/139416405/b8590562-29aa-4082-b80a-acbdba580e8b" alt="mockups" width="600"/>
+
+
 
 ## Cómo iniciar el proyecto
 
@@ -36,6 +38,10 @@ cd PrePAES
 ```bash
 npm install
 ```
+2. **Dejar "apirest.js" de esta manera:**
+
+<img src="https://res.cloudinary.com/dohtxxlbe/image/upload/v1700092261/ImagenesPrePAES/code_vu1bi8.png" alt="mockups" width="500"/>
+
 3. **Compilar Proyecto:**
 
 ```bash
