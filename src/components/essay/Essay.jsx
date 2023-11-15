@@ -56,7 +56,7 @@ function Essay(props) {
   const [puntuación, setPuntuacion] = useState(
     JSON.parse(localStorage.getItem("puntuacion")) || ""
   );
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState( JSON.parse(localStorage.getItem('isFinished'))||false);
   const [ensayo, setEnsayo] = useState(
     JSON.parse(localStorage.getItem("ensayo")) || props.ensayo
   );
@@ -74,10 +74,13 @@ function Essay(props) {
   const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
   const ecuacionRegex = /\[(.*?)\]/g; // Expresión regular para detectar partes de la cadena que contienen ecuaciones
   const [tiempoUsuario, setTiempoUsuario] = useState(0);
+  const flagTimeOut2 = useRef(true);
+  const [isFinishedTimeOut, setIsFinishedTimeOut] = useState(false);
+  const [flagTimeOut, setFlagTimeOut] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [showFormError, setShowFormError] = useState(false);
   const [questionError, setQuestionError] = useState('');
-  const [questionsId, setQuestionsId] = useState(
+  const [questionsId, setQuestionsId] = useState( JSON.parse(localStorage.getItem('questionsId')) ||
     props.ensayo.map((item) => item.id)
   );
   const [formDataError, setFormDataError] = useState({
@@ -122,6 +125,7 @@ function Essay(props) {
       if (tiempoRestante === 0) {
         setAreDisabled(true);
         setIsFinished(true);
+        setIsFinishedTimeOut(true)
       }
     }, [1000]);
 
@@ -137,11 +141,18 @@ function Essay(props) {
   }, [tituloPregunta]);
 
   useEffect(() => {
+    localStorage.setItem('questionsId', JSON.stringify(questionsId));
+  }, [questionsId]);
+
+  useEffect(() => {
     localStorage.setItem('respuestaId', JSON.stringify(respuestaId));
   }, [respuestaId]);
   useEffect(() => {
     localStorage.setItem("respuesta", JSON.stringify(respuestaaa));
   }, [respuestaaa]);
+  useEffect(() => {
+    localStorage.setItem("isFinished", JSON.stringify(isFinished));
+  }, [isFinished]);
   useEffect(() => {
     localStorage.setItem("tiempoRestante", tiempoRestante.toString());
   }, [tiempoRestante]);
@@ -163,7 +174,7 @@ function Essay(props) {
   }, []);
 
   useEffect(() => {
-    console.log('estas son los id de las preguntas: '+questionsId)
+    console.log('estas son los id de las preguntas: '+localStorage.getItem('questionsId'))
     console.log('estas son las respuestas: '+respuestaId)
     
   }, [respuestaId]);
@@ -201,10 +212,6 @@ function Essay(props) {
   }
 
   async function finalizarEnsayo() {
-    const allQuestionsAnswered = Object.keys(selectedAnswers).length === ensayo.length;
-    if (!allQuestionsAnswered) {
-      setShowPopup(true);
-    } else {
       // Aquí va el código para manejar el envío del formulario cuando todas las preguntas han sido respondidas
 
       setTiempoUsuario(getFormatedTime(props.ensayo.length * 60 * 2 - tiempoRestante));
@@ -216,10 +223,11 @@ function Essay(props) {
       console.log(new_id)
 
       const token = localStorage.getItem("token");
+      const respuestas = respuestaId.filter(elemento => elemento !== null && elemento !== undefined);
       console.log(respuestaId)
       try {
         const response = await axios.post(UrlSubmitAnswers, {
-          answer_ids: respuestaId, // [16,11,null,7,3]
+          answer_ids: respuestas, // [16,11,null,7,3]
           user_essay_id: new_id,
           time_essay: tiempoUser.toString()
 
@@ -252,7 +260,7 @@ function Essay(props) {
         console.log(error);
       }
 
-    }
+    
   }
   function handleClickNav(j) {
     setPreguntaActual(j);
@@ -364,6 +372,67 @@ function Essay(props) {
     }
   }
 
+  async function finalizarEnsayoTimeOut() {
+    // Aquí va el código para manejar el envío del formulario cuando todas las preguntas han sido respondidas
+
+    if (flagTimeOut2.current == true) {
+      setTiempoUsuario(getFormatedTime(props.ensayo.length * 60 * 2 - tiempoRestante));
+
+      let tiempoUser = props.ensayo.length * 60 * 2 - tiempoRestante;
+
+     
+      setIsFinished(true);
+      flagTimeOut2.current = false
+
+      console.log(new_id)
+
+      const token = localStorage.getItem("token");
+      console.log(respuestaId)
+      const respuestas = respuestaId.filter(elemento => elemento !== null && elemento !== undefined);
+      console.log(respuestas)
+      try {
+        const response = await axios.post(UrlSubmitAnswers, {
+          answer_ids: respuestas, // [16,11,null,7,3]
+          user_essay_id: new_id,
+          time_essay: tiempoUser.toString()
+
+
+          //question_ids: preguntaId, [1,2,3,4,5]
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('guarde el ensayo');
+        
+        console.log(props.ensayo.length);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        const response = await axios.post(urlSubmitQuestions, {
+          question_ids: questionsId, // [16,11,null,7,3]
+          user_essay_id: new_id,
+      
+          //completa el codigo
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('se mando genial ');
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+  }
+
+  if (isFinishedTimeOut && flagTimeOut2){
+      finalizarEnsayoTimeOut()
+  }
+
   if (isFinished)
     return (
       <div>
@@ -396,7 +465,7 @@ function Essay(props) {
                   </ul>
                   <div className="d-flex justify-content-end widht-100 ">
                     <button
-                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"),localStorage.removeItem("respuestaId"),localStorage.removeItem("new_id"),localStorage.removeItem("ensayoActivo"))}
+                      onClick={() => (navigate(`/Ensayos`), localStorage.removeItem("ensayo"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntuacion"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("puntajeFinal"), localStorage.removeItem("selectedAnswers"), localStorage.removeItem("preguntaActual"), localStorage.removeItem("respuesta"), localStorage.removeItem("tituloPregunta"), localStorage.removeItem("tiempoRestante"),localStorage.removeItem("respuestaId"),localStorage.removeItem("new_id"),localStorage.removeItem("ensayoActivo"), localStorage.removeItem("questionsId"))}
                       type="button"
                       className="btn btn-outline-dark btn-lg m-2"
                       id="bot"

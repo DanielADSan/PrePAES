@@ -114,7 +114,7 @@ function VerDatosHistorial({ setVerMasConfirmado, datosEnsayo }) {
         setResponse(res.data);
         console.log(res.data)
         setEnsayo(res.data.question)
-        setAnswered(res.data.answered.sort(function (a, b) { return a - b }))
+        setAnswered(res.data.answered)
       })
       .catch(error => {
         console.log(error);

@@ -120,7 +120,13 @@ textarea{
     
 }
 .sinDatos{
-  color: var(--dark);
+  color: dark;
+  background-color: var(--warning);
+  width: 350px;
+  text-align: center;
+  padding: .3rem;
+  border-radius: 10px;
+  
 }
 .boton .btn{ 
     /* background: linear-gradient(37.35deg, #61B0DC 24.25%, rgba(97, 176, 220, 0.13) 88.46%); */

@@ -15,7 +15,7 @@ const ResetPassword = () => {
     const [errorNotFoundMsg, setErrorNotFoundMsg] = useState("");
     const [alert, setAlert] = useState(false);
     const [alertMsg, setalertMsg] = useState("");
-
+    const [spinner, setSpinner] = useState(false);
     const manejadorSubmit = (e) => {
         e.preventDefault();
     };
@@ -28,7 +28,7 @@ const ResetPassword = () => {
     };
 
     const manejadorBoton = () => {
-
+        setSpinner(true);
         if (!form.email) {
             setErrorNotFound(true);
             setErrorNotFoundMsg("Debe ingresar un correo electronico");
@@ -45,13 +45,13 @@ const ResetPassword = () => {
                     console.log(response.data);
                     setAlert(true);
                     setalertMsg("Correo enviado!");
-                    
+                    setSpinner(false);
                     setTimeout(() => {
                         setAlert(false);
                     }, 2000);
             })
             .catch(error => {
-                          
+                setSpinner(false);     
                 setErrorNotFound(true);
                 setErrorNotFoundMsg("El correo electronico ingresado no se encuentra asociado a una cuenta");
                 setTimeout(() => {
@@ -107,7 +107,11 @@ const ResetPassword = () => {
                         </div>
                         <div className="form-group">
                             <div className="col-sm-offset-2 ">
+                            {spinner && (
+                                <div className="spinner loading"></div>
+                            )}
                                 <button type="button" className="btn btn-dark mt-2" onClick={manejadorBoton}>Envivar correo de recuperación</button>
+                                
                                 {errorNotFound === true && (
                                     <div className="alert alert-danger mt-3" role="alert">
                                         {errorNotFoundMsg}

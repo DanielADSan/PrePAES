@@ -107,7 +107,7 @@ const PaginacionHistorial = () => {
                             </div>
                         </div>
 
-                        {error && <div className="sinDatos" style={{ margin: '1rem' }}><h4>Aún no realizas un ensayo ...</h4></div>}
+                        {error && <div className="sinDatos"><h4>Aún no realizas un ensayo ...</h4></div>}
                         {selectedButton === 'Resumen' && (
                             <Statistics />)}
                         {selectedButton === 'Historial' && (

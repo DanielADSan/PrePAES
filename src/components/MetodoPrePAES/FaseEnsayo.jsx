@@ -300,7 +300,7 @@ const FaseEnsayo = () => {
             </div>
             <div className='Botones' style={{ gridColumn: '3' }}>
 
-              <ul className="pagination">
+              <ul className="pagination" style={{padding:'1rem', fontSize:'22px'}}>
                 <li onClick={previousPage} className="page-item"><a className="page-link" href="#">Retroceder</a></li>
                 <li className="page-item"><a className="page-link" href="#">{localStorage.getItem('numeroFase')}</a></li>
                 <li onClick={nextPage} className="page-item"><a className="page-link" href="#">Avanzar</a></li>

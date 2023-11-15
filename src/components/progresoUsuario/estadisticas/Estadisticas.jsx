@@ -44,11 +44,11 @@ const Estadisticas = ({ items }) => {
                         <div className='bottom-data'>
                                 <div className='orders'>
                                         <div className='header'>
-                                                <i className='bx bx-stats'></i>
+                                                <i className='bx bx-stats' style={{cursor:'auto'}}></i>
                                                 
                                                 <h3>Evolución de puntaje</h3>
 
-                                                <i className='bx bx-filter'></i>
+                                                {/*<i className='bx bx-filter'></i>*/}
 
                                         </div>
 
@@ -59,8 +59,8 @@ const Estadisticas = ({ items }) => {
                                 </div>
                                 <div className="orders">
                                         <div className="header">
-                                                <i className='bx bx-history' ></i>
-                                                <h3 style={{display:'flex',margin:'0px'}}>Porcentaje de acierto</h3>
+                                                <i className='bx bx-history'style={{cursor:'auto'}} ></i>
+                                                <h3 style={{display:'flex'}}>Porcentaje de acierto</h3>
                                                 <select className='form-select ' style={{fontSize:'23px', fontWeight:'600', padding:'.3rem'}} onChange={onSelectChange}>
                                                         <option value="algebra">Álgebra</option>
                                                         <option value="numeros">Números</option>
@@ -69,7 +69,7 @@ const Estadisticas = ({ items }) => {
                                                 </select>
                                                 
 
-                                                <i className='bx bx-filter'></i>
+                                                {/*<i className='bx bx-filter'></i>*/}
 
                                         </div>
                                         <div style={{ width: '100%', height: '100%', maxHeight:'500px', padding: '10px 0' }}>
