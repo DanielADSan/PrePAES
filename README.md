@@ -12,9 +12,9 @@ PrePAES es una aplicación web educativa diseñada para ayudar a los estudiantes
 
 - **Guardar Configuraciones:** Puede guardar sus configuraciones personalizadas para luego seguir practicando en esa area que desee reforzar.
 
-- **Retroalimentación con Videos:** Se agregó a cada pregunta de los ensayos videos explicativos de creadores de contenidos y profesores .
+- **Retroalimentación con Videos:** Se agregó a cada pregunta de los ensayos videos explicativos de creadores de contenidos y profesores.
 
-- **Método PrePAES(Proximamente):** Practica con el método PrePAES, ensayos que se adaptan a tu desempeño. 
+- **Método PrePAES:** Practica con el método PrePAES, ensayos que se adaptan a tu desempeño. 
 
 ## Screenshots
 
