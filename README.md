@@ -1,4 +1,4 @@
-# PrePAES: Aplicación web educativa
+# PrePAES: Aplicación web enfocada en la PAES
 
 
 
