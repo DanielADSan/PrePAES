@@ -112,7 +112,7 @@ const UserProfile = () => {
                     }
                 });
                 //recargar pagina
-                window.location.reload();
+                
             } catch (error) {
                 console.log(selectedAvatar)
                 setErrorTypeData('username_email');
@@ -153,7 +153,8 @@ const UserProfile = () => {
     }
 
     const togglePopup = () => {
-        setShowPopup(!showPopup); // Cambia el estado de visibilidad del popup
+        setShowPopup(!showPopup);
+       // Cambia el estado de visibilidad del popup
     };
 
     return (
@@ -180,7 +181,7 @@ const UserProfile = () => {
                                         </div>
                                         <div className='containerData'>
                                             <h4 href="email">Email</h4>
-                                            <input type="text" name="email" id="email" className="input-group-text" />
+                                            <input type="text" name="email" id="email" className="input-group-text"  disabled />
                                         </div>
                                         <div className='containerData' style={{alignSelf:'center', alignItems:'center'}}>
                                             <h4 href="avatar">Avatar</h4>
@@ -226,7 +227,7 @@ const UserProfile = () => {
                                                     <p>Sus datos han sido modificados con exito</p>
                                                 )}
 
-                                                <button type="button" className="btn btn-outline-dark btn-lg " onClick={togglePopup}>Cerrar</button>
+                                                <button type="button" className="btn btn-outline-dark btn-lg " onClick={()=>{togglePopup; window.location.reload(); }}>Cerrar</button>
                                             </div>
                                         </div>
                                     )}

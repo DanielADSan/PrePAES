@@ -24,6 +24,7 @@ const CardEssayCustom = () => {
   const [firstEssayType, setFirstEssayType] = useState([]);
   const [shouldShowError, setShouldShowError] = useState(false);
   const [spinner, setSpinner] = useState(true);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
@@ -146,6 +147,17 @@ const CardEssayCustom = () => {
             <div className="popup-header">
               <i class='bx bx-x exitPopup' onClick={() => { setShowPopup(false) }}></i>
             </div>
+            {confirmDelete && (
+              <div className="confirmDelete">
+                <h2>¿Está seguro de eliminar esta configuración?</h2>
+                <div className="popup-buttons">
+                  <button className="btn btn-outline-dark btn-lg m-2" onClick={() => { DeleteEssay(essayId) }}>Eliminar</button>
+                  <button className="btn btn-outline-danger btn-lg m-2" onClick={() => { setConfirmDelete(false) }}>Cancelar</button>
+                </div>
+              </div>
+            )}
+            {!confirmDelete && (
+              <>
             <h1 style={{ fontWeight: "bold" }}>{essayTemario}</h1>
             <p style={{fontSize:'20px', marginTop:'1rem'}}>Este ensayo consta de <b>{essayCurrent}</b> preguntas y el temario será de: <b>{corregirOrtografia(firstEssayType.math_type_type) }{essayType.map((types)=>{
                 return(
@@ -156,8 +168,10 @@ const CardEssayCustom = () => {
             <h3>¿Desea iniciar el ensayo?</h3>
             <div className="popup-buttons">
               <button className="btn btn-outline-dark btn-lg m-2" onClick={() => { IniciarEnsayo(essayCurrent, essayTemario, essayTypeOficial) }}>Iniciar Ensayo</button>
-              <button className="btn btn-outline-danger btn-lg m-2" onClick={() => { DeleteEssay(essayId) }}>Eliminar Configuracion</button>
+              <button className="btn btn-outline-danger btn-lg m-2" onClick={() => { setConfirmDelete(true)}}>Eliminar Configuracion</button>
             </div>
+            </>
+            )}
           </div>
         </div>
       )}

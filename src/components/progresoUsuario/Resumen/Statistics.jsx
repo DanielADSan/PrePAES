@@ -28,33 +28,40 @@ const Statistics = () => {
     async function EssayData() {
         const token = localStorage.getItem("token");
 
-        const essayMostRecentData = await axios.get(ApiEssayMostRecent, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        try {
+            const essayMostRecentData = await axios.get(ApiEssayMostRecent, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-   
-   
-        //dos decimales solo si es que tiene decimales = toFixed(2) como no agregar los decimales si es un numero entero = 
-            
             setEssayScoreRecent(essayMostRecentData.data.puntaje.toFixed(0))
             setSpinner1(false);
-      
-
+        } catch (error) {
+            console.error(error);
+            setEssayScoreRecent('No hay ensayos')
+            setSpinner1(false);
+        }
     }
 
     async function EssayAverageBestData() {
         const token = localStorage.getItem("token");
 
-        const essayMostRecentData = await axios.get(ApiEssayBestScore, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setEssayAverageScore(essayMostRecentData.data.average.toFixed(0)) 
-        setEssayScoreBest(essayMostRecentData.data.bestScore.puntaje.toFixed(0))
-        setSpinner2(false);
+        try {
+            const essayMostRecentData = await axios.get(ApiEssayBestScore, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setEssayAverageScore(essayMostRecentData.data.average.toFixed(0)) 
+            setEssayScoreBest(essayMostRecentData.data.bestScore.puntaje.toFixed(0))
+            setSpinner2(false);
+        } catch (error) {
+            console.error(error);
+            setEssayAverageScore('No hay ensayos')
+            setEssayScoreBest('No hay ensayos')
+            setSpinner2(false);
+        }
     }
 
     async function FiveEssayData() {
@@ -75,7 +82,7 @@ const Statistics = () => {
         <>
             <div className='containerDashboard'>
                 <ul className='insights'>
-                    <li>
+                    <li style={{cursor:'auto'}}>
                         <i className='resumen bx bx-calendar-check'></i>
                         <span className='info'>
                             {spinner1 && (
@@ -87,7 +94,7 @@ const Statistics = () => {
                             <p href="username">Ensayo más reciente</p>                    
                         </span>
                     </li>
-                    <li>
+                    <li style={{cursor:'auto'}}>
                         <i className='resumen bx bx-globe'></i>
                         <span className='info'>
                             
@@ -100,7 +107,7 @@ const Statistics = () => {
                             <p href="username">Promedio de puntajes</p>
                         </span>
                     </li>
-                    <li>
+                    <li style={{cursor:'auto'}}>
                     <i className='resumen bx bxs-arrow-to-top' ></i>
                         <span className='info'>
                             {spinner2 && (
@@ -117,14 +124,14 @@ const Statistics = () => {
                 <div className='bottom-data'>
                     <div className='orders'>
                         <div className='header'>
-                            <i className='bx bx-stats'></i>
+                            <i className='bx bx-stats' style={{cursor:'auto'}}></i>
                             <h3>Evolución de puntaje</h3>
                             {spinner4 && (
                                
                                <div className="spinner loading" ></div>
                         
                        )}
-                            <i className='bx bx-filter'></i>
+                            {/*<i className='bx bx-filter'></i>*/}
                   
                         </div>
                         
@@ -135,15 +142,14 @@ const Statistics = () => {
                     </div>
                     <div className="orders">
                     <div className="header">
-                    <i className='bx bx-history' ></i>
+                    <i className='bx bx-history' style={{cursor:'auto'}}></i>
                         <h3>Ultimos ensayos</h3>
                         {spinner3 && (
                                
                                <div className="spinner loading" ></div>
                         
                        )}
-                        <i className='bx bx-filter'></i>
-            
+                        {/*<i className='bx bx-filter'></i>*/}            
                     </div>
                     <table>
                         <thead>
