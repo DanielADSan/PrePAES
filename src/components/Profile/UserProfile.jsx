@@ -58,7 +58,13 @@ const UserProfile = () => {
         newUserName.value = userData.data.username
         setAvatar(userData.data.avatar)
 
-        setSelectedAvatar(avatars.indexOf(userData.data.avatar))
+        if (userData.data.avatar != null){
+            setSelectedAvatar(avatars.indexOf(userData.data.avatar))
+        }
+        else{
+            setSelectedAvatar(0)
+        }
+        
 
         console.log(userData.data)
     }
