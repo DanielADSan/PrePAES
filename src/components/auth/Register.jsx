@@ -109,17 +109,17 @@ class Register extends Component {
             this.setState({
               spinner: false,
           })
-            console.log(e.response.data);
+            console.log(e.response.data.message);
             if (e.response.data.password && e.response.data.password === "Las contraseñas deben coincidir.") {
               newErrors.push("Las contraseñas no coinciden");
             }
       
-            if (e.response.data.email && e.response.data.email[0] === "Ya existe users con este email.") {
-              newErrors.push("Ya existe un usuario con este email.");
+            if (e.response.data.message && e.response.data.message === "El email ingresado ya esta en uso") {
+              newErrors.push("El email ingresado ya esta en uso");
             }
       
-            if (e.response.data.email && e.response.data.email[0] === "Introduzca una dirección de correo electrónico válida.") {
-              newErrors.push("Introduzca una dirección de correo electrónico válida.");
+            if (e.response.data.message && e.response.data.message === "Email invalido, ingrese el formato correcto") {
+              newErrors.push("Email invalido, ingrese el formato correcto");
             }
       
             // Actualizar el estado de los errores al final

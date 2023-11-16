@@ -99,6 +99,117 @@ const ChangeUsers = () => {
         
     };
 
+    const manejadorEliminar = () => {
+
+        if (!form.id) {
+            setError(true);
+            setErrorMsg("Usuario no encontrado verifique el id!");
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+        }
+        else{
+            const url = Apiurl + "users/" + form.id + "/";
+            axios.patch(url, {
+                email: form.email,
+                is_deleted: true
+            },{headers: {
+                    Authorization: `Bearer ${token}` // Agrega el token en los headers
+                }
+            })
+            .then(response => {
+                    console.log(response.data);
+                    setAlert(true);
+                    setalertMsg("Cambio exitoso!");
+                    cargarListado(); // Llama a cargarListado para actualizar la tabla
+                    setTimeout(() => {
+                        setAlert(false);
+                    }, 2000);
+            })
+            .catch(error => {
+                    
+                    
+                    if (error.response.status == 404){
+                        setErrorNotFound(true);
+                        setErrorNotFoundMsg("Usuario no encontrado verifique el id!");
+                        setTimeout(() => {
+                            setErrorNotFound(false);
+                        }, 2000);
+                    }
+
+                    if (error.response.status == 400){
+                        setErrorEmail(true);
+                        setErrorEmailMsg(error.response.data['message']);
+                        setTimeout(() => {
+                            setErrorEmail(false);
+                        }, 2000);
+                    }
+                        
+
+                    console.log(error.response.data);
+                });    
+        }
+
+
+
+
+        
+    };
+
+    
+    const manejadorRecuperar = () => {
+
+        if (!form.id) {
+            setError(true);
+            setErrorMsg("Usuario no encontrado verifique el id!");
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+        }
+        else{
+            const url = Apiurl + "users/" + form.id + "/";
+            axios.patch(url, {
+                email: form.email,
+                is_deleted: false
+            },{headers: {
+                    Authorization: `Bearer ${token}` // Agrega el token en los headers
+                }
+            })
+            .then(response => {
+                    console.log(response.data);
+                    setAlert(true);
+                    setalertMsg("Cambio exitoso!");
+                    cargarListado(); // Llama a cargarListado para actualizar la tabla
+                    setTimeout(() => {
+                        setAlert(false);
+                    }, 2000);
+            })
+            .catch(error => {
+                    
+                    
+                    if (error.response.status == 404){
+                        setErrorNotFound(true);
+                        setErrorNotFoundMsg("Usuario no encontrado verifique el id!");
+                        setTimeout(() => {
+                            setErrorNotFound(false);
+                        }, 2000);
+                    }
+
+                    if (error.response.status == 400){
+                        setErrorEmail(true);
+                        setErrorEmailMsg(error.response.data['message']);
+                        setTimeout(() => {
+                            setErrorEmail(false);
+                        }, 2000);
+                    }
+                        
+
+                    console.log(error.response.data);
+                });    
+        }
+        
+    };
+
     useEffect(() => {
         const urlAll = Apiurl + "users/all/";
         axios.get(urlAll, {
@@ -107,6 +218,7 @@ const ChangeUsers = () => {
             }
         })
             .then(response => {
+                console.log(response.data)
                 setUsers(response.data);
                 setTotalPaginas(Math.ceil(response.data.length / itemsPorPagina - 1));
                 setStatus(true);
@@ -262,6 +374,7 @@ const ChangeUsers = () => {
                                             <th>Id</th>
                                             <th>Nombre de usuario</th>
                                             <th>Correo electronico</th>
+                                            <th>Eliminado logico</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -271,7 +384,7 @@ const ChangeUsers = () => {
                                                     <td>{users.id}</td>
                                                     <td>{users.username}</td>
                                                     <td>{users.email}</td>
-                                            
+                                                    <td>{users.is_deleted == false ? 'No':'Si'}</td>
                                                     {/* 
                                                     <td>
                                                         <a href={question.link_resolution} target="_blank" rel="noopener noreferrer">
@@ -330,6 +443,8 @@ const ChangeUsers = () => {
                             <div className="form-group">
                                 <div className="col-sm-offset-2 ">
                                     <button type="button" className="btn btn-dark mt-2" onClick={manejadorBoton}>Modificar</button>
+                                    <button type="button" className="btn btn-dark mt-2 ml-3" onClick={manejadorEliminar}>Eliminar</button>
+                                    <button type="button" className="btn btn-dark mt-2 ml-3" onClick={manejadorRecuperar}>Recuperar</button>
                                     {alert === true && (
                                         <div className="alert alert-success mt-3" role="alert">
                                             {alertMsg}
