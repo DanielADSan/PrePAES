@@ -96,7 +96,7 @@ const ResumenPrePAES = () => {
                     </div>
                     <ul className="insights">
                        
-                            <li >
+                            <li style={{cursor:'auto'}} >
                             <img className="bx" src={peorCategoria === "numeros" ? numeros : peorCategoria === "algebra" ? algebra : peorCategoria === "geometria" ? geometria : peorCategoria === "probabilidades" ? probabilidad : signo} />
                                 <span className="info">
                                     <h3>{peorCategoria === "numeros" ? "Números" : peorCategoria === "algebra" ? "Álgebra y Funciones" : peorCategoria === "geometria" ? "Geometría" : peorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Aún no existe"}</h3>
@@ -104,7 +104,7 @@ const ResumenPrePAES = () => {
                                 </span>
 
                             </li>
-                            <li >
+                            <li style={{cursor:'auto'}}>
                                 {/*<img className="bx" src={} />+*/}
                                 <img className="bx" src={mejorCategoria === "numeros" ? numeros : mejorCategoria === "algebra" ? algebra : mejorCategoria === "geometria" ? geometria : mejorCategoria === "probabilidades" ? probabilidad : signo} />
                                 <span className="info">
@@ -113,7 +113,7 @@ const ResumenPrePAES = () => {
                                 </span>
 
                             </li>
-                            <li >
+                            <li style={{cursor:'auto'}}>
                                 <img className="bx" src={calificación}/>
                                 <span className="info">
                                     <h3>{promedio}</h3>
@@ -123,7 +123,7 @@ const ResumenPrePAES = () => {
                             </li>    
                     </ul>
                     <ul className='insights'>
-                    <li>            
+                    <li style={{cursor:'auto'}}>            
                                     <div className={`colorDificultad ${estadoDificultad.probabilidades}`}></div>
                                     <span className='info'>
                                         
@@ -132,7 +132,7 @@ const ResumenPrePAES = () => {
                                     </span>
                                     
                                 </li>
-                                <li>
+                                <li style={{cursor:'auto'}}>
                                 <div className={`colorDificultad ${estadoDificultad.algebra}`}></div>
                                     <span className='info'>
                                         <h3>Álgebra: {estadoDificultad.algebra}</h3>
@@ -140,7 +140,7 @@ const ResumenPrePAES = () => {
                                     </span>
                                     
                                 </li>
-                                <li>
+                                <li style={{cursor:'auto'}}>
                                 <div className={`colorDificultad ${estadoDificultad.geometria}`}></div>
                                     <span className='info'>
                                         <h3>Geometría: {estadoDificultad.geometria}</h3>
@@ -148,7 +148,7 @@ const ResumenPrePAES = () => {
                                     </span>
                                     
                                 </li>
-                                <li>
+                                <li style={{cursor:'auto'}}>
                                 <div className={`colorDificultad ${estadoDificultad.numeros}`}></div>
                                     <span className='info'>
                                         <h3>Números: {estadoDificultad.numeros}</h3>
