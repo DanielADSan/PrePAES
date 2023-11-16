@@ -57,6 +57,9 @@ const UserProfile = () => {
         newEmail.value = userData.data.email
         newUserName.value = userData.data.username
         setAvatar(userData.data.avatar)
+
+        setSelectedAvatar(avatars.indexOf(userData.data.avatar))
+
         console.log(userData.data)
     }
 
