@@ -479,7 +479,7 @@ function Essay(props) {
                 </div>
               </div>
             </div>
-
+            <h5 className="mt-4" style={{color:'var(--dark)'}}>Selecciona la alternativa para acceder a la retroalimentación<i style={{padding:'.2rem', backgroundColor:'var(--warning2)',marginLeft:'5px',borderRadius:'50%', fontSize:'20px',color:'dark important!'}} class='bx bx-question-mark' ></i> </h5>
             <div className="accordion mt-4" id="accordionExample">
               <div className="acordion-result">
                 {ensayo.map((item, j) => (

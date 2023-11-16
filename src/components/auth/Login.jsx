@@ -36,6 +36,12 @@ class Login extends React.Component {
             console.log('si funciona')
         }
     }
+    manejadorEnter = (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault(); // Evita que el formulario se envíe por defecto al presionar Enter
+          this.manejadorBoton(); // Llama a tu función de manejo del botón
+        }
+      };
     manejadorBoton = () => {
 
         let url = Apiurl + 'api/login/';
@@ -138,7 +144,7 @@ class Login extends React.Component {
                             </nav>
                         </div>
                     </header>
-                    <form className="formulario" id="formularioL" >
+                    <form className="formulario" id="formularioL" onKeyPress={this.manejadorEnter} >
                         <h1 className='hero_register'><span>Iniciar</span> <span style={{ color: '#F0AD4E' }}>Sesión</span></h1>
                         <div className="contenedorLogin ">
 

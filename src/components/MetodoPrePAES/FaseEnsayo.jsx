@@ -18,6 +18,7 @@ const FaseEnsayo = () => {
   const UrlGetOneQuestion = Apiurl + "question_oneQuestionRules_prePaes/";
   const urlGetDataQuestionPrePAES = Apiurl + "PrePAES_data_questions/";
   const [showLineaProgreso, setShowLineaProgreso] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
   const [questionsState, setQuestionsState] = useState([]); // Estado que almacena las preguntas respondidas
   const [question, setQuestion] = useState(null);
   const [questionSinResponder, setQuestionSinResponder] = useState([]);
@@ -119,7 +120,7 @@ const FaseEnsayo = () => {
       }
     }).then((response) => {
       const faseActual = parseInt(localStorage.getItem("numeroFase"));
-      localStorage.setItem("numeroFase", faseActual + 1);
+      localStorage.setItem("numeroFase", faseActual);
       console.log('createessay')
     }).catch((error) => {
       console.log(error)
@@ -222,7 +223,7 @@ const FaseEnsayo = () => {
     <>
       <div className="header">
         <div className="left">
-          <h1>Método PrePAES</h1>
+          <h1>Método PrePAES<i  title="Video Tutorial de PrePAES" onClick={()=>{setShowVideo(true)}} style={{padding:'.2rem', backgroundColor:'var(--warning2)',marginLeft:'1rem',borderRadius:'50%', fontSize:'30px',color:'dark important!', cursor:'pointer'}} class='bx bx-question-mark' ></i></h1>
         </div>
       </div>
       {questionsState.length < 20 && (
@@ -309,6 +310,23 @@ const FaseEnsayo = () => {
           </div>
         </>
       )}
+      {showVideo && (
+          <div className="popup">
+            <div className="popup-content">
+            <iframe
+                          className='video-respuesta mt-3 show'
+                          id="video03"
+
+                          src="https://www.youtube.com/embed/ABwN3qomEsw?si=V1WJz2ynz4O-I-Bf"
+                          title="YouTube video player"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+              <button className="btn btn-lg btn-warning" onClick={() => setShowVideo(false)}>Cerrar</button>
+            </div>
+          </div>
+        )}
       {!showLineaProgreso && <EnsayoPrePAES onHide={hideLineaProgreso} />}
     </>
   );
