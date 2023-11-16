@@ -25,9 +25,16 @@ function PuntajesDeCorte() {
             <Sidebar sidebarActive={sidebarActive} ubicacionActual={"Puntaje de Corte"} />
             <div className="content " >
                 <Navbar toggleSidebar={toggleSidebar} />
+                
                 <main >
+                <div className="header">
+                <div className="left">
+                                    <h1>Puntajes de Corte 2023 (Beta)</h1>
+
+                                </div>
             <div className='contenedorHistorial' style={{height:'850px',borderRadius:'9px'}} >
                 {/* Dropdown para seleccionar la universidad */}
+                
                 <select className='w-20 align-self-center mt-4 p-2 rounded'  value={universidadSeleccionada} onChange={handleUniversidadChange}>
                     {Object.keys(puntajesData).map((universidad) => (
                         <option key={universidad} value={universidad}>
@@ -54,6 +61,7 @@ function PuntajesDeCorte() {
                  
                 </table>
             </div>
+        </div>
                 </main>
             </div>
         </>
