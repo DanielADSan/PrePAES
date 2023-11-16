@@ -88,6 +88,96 @@ const ChangeQuestions = () => {
             });  
         } 
     };
+    const manejadorEliminar = () => {
+        console.log('eliminar');
+        if (!form.id) {
+            setError(true);
+            setErrorMsg("Seleccione una pregunta para la eliminación");
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+            return
+        }
+        else{
+            const url = Apiurl + "questions/" + form.id + "/";
+            axios.patch(url, {
+                is_deleted: true
+            }, {headers: {
+                    Authorization: `Bearer ${token}` // Agrega el token en los headers
+                }
+            }).then(response => {
+                setAlert(true);
+                setAlertMsg("Eliminación exitosa!");
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
+                cargarListado(); // Llama a cargarListado para actualizar la tabla
+            }).catch(error => {
+
+                if (error.response.status == 404){
+                    setErrorNotFound(true);
+                    setErrorNotFoundMsg("Pregunta no encontrada verifique el id!");
+                    setTimeout(() => {
+                        setErrorNotFound(false);
+                    }, 2000);
+                }
+                
+                if (error.response.status == 400){
+                    setErrorLink(true);
+                    setErrorLinkMsg(error.response.data['message']);
+                    setTimeout(() => {
+                            setErrorLink(false);
+                    }, 2000);
+                }
+                console.log(error.response.data);
+            });  
+        } 
+    };
+    const manejadorRecuperar = () => {
+        console.log('recuperar');
+        if (!form.id) {
+            setError(true);
+            setErrorMsg("Seleccione una pregunta para la modificación");
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+            return
+        }
+        else{
+            const url = Apiurl + "questions/" + form.id + "/";
+            axios.patch(url, {
+                is_deleted: false
+            }, {headers: {
+                    Authorization: `Bearer ${token}` // Agrega el token en los headers
+                }
+            }).then(response => {
+                setAlert(true);
+                setAlertMsg("Modificación exitosa!");
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
+                cargarListado(); // Llama a cargarListado para actualizar la tabla
+            }).catch(error => {
+
+                if (error.response.status == 404){
+                    setErrorNotFound(true);
+                    setErrorNotFoundMsg("Pregunta no encontrada verifique el id!");
+                    setTimeout(() => {
+                        setErrorNotFound(false);
+                    }, 2000);
+                }
+                
+                if (error.response.status == 400){
+                    setErrorLink(true);
+                    setErrorLinkMsg(error.response.data['message']);
+                    setTimeout(() => {
+                            setErrorLink(false);
+                    }, 2000);
+                }
+                console.log(error.response.data);
+            });  
+        } 
+    };
 
     useEffect(() => {
         const urlAll = Apiurl + "questions/list/all/";
@@ -323,6 +413,7 @@ const ChangeQuestions = () => {
                                             <th>Id</th>
                                             <th>Temario</th>
                                             <th>Enunciado</th>
+                                            <th>Eliminado Logico</th>
                                    
                                             <th>Alternativas</th>
                                         </tr>
@@ -340,6 +431,7 @@ const ChangeQuestions = () => {
                                                         })}
 
                                                     </td>
+                                                    <td>{question.is_deleted == false ? 'No':'Si'}</td>
                                                     {/* 
                                                     <td>
                                                         <a href={question.link_resolution} target="_blank" rel="noopener noreferrer">
@@ -401,6 +493,8 @@ const ChangeQuestions = () => {
                         <div className="form-group">
                             <div className="col-sm-offset-2 ">
                                 <button type="button" className="btn btn-dark mt-2" onClick={manejadorBoton}>Modificar</button>
+                                <button type="button" className="btn btn-dark mt-2 ml-3" onClick={manejadorEliminar}>Eliminar</button>
+                                <button type="button" className="btn btn-dark mt-2 ml-3" onClick={manejadorRecuperar}>Recuperar</button>
                                 {alert === true && (
                                     <div className="alert alert-success mt-3" role="alert">
                                         {alertMsg}
@@ -421,6 +515,7 @@ const ChangeQuestions = () => {
                                         {errorNotFoundMsg}
                                     </div>
                                 )}
+                             
                             </div> 
                         </div>
                     </form>                              

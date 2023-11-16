@@ -10,6 +10,7 @@ import geometria from "../../images/geometria.png";
 import numeros from "../../images/numeros.png";
 import probabilidad from "../../images/probabilidad.png";
 import signo from "../../images/signo.png";
+import calificación from "../../images/calificacion.png";
 import { Apiurl } from "../../Services/apirest"
 const ResumenPrePAES = () => {
     const [sidebarActive, setSidebarActive] = useState(JSON.parse(localStorage.getItem("sidebarActive")) || false);
@@ -30,6 +31,7 @@ const ResumenPrePAES = () => {
     const [estadoDificultad, setEstadoDificultad] = useState([]);
     const [mejorCategoria, setMejorCategoria] = useState('');
     const [peorCategoria, setPeorCategoria] = useState('');
+    const [promedio, setPromedio] = useState('');
 
     useEffect(() => {
         const getEstadisticas = async () => {
@@ -44,6 +46,7 @@ const ResumenPrePAES = () => {
                 setEstadoDificultad(response.data[2]);
                 setMejorCategoria(response.data[0].Correcta);
                 setPeorCategoria(response.data[0].Reforzar);
+                setPromedio(response.data[3])
             } catch (error) {
                 // Manejar el error de alguna manera, por ejemplo, mostrando un mensaje de error al usuario o registrando el error en un sistema de registro.
                 console.error('Ocurrió un error al obtener estadísticas:', error);
@@ -107,6 +110,14 @@ const ResumenPrePAES = () => {
                                 <span className="info">
                                     <h3>{mejorCategoria === "numeros" ? "Números" : mejorCategoria === "algebra" ? "Álgebra y Funciones" : mejorCategoria === "geometria" ? "Geometría" : mejorCategoria === "probabilidades" ? "Probabilidad y Estadística" : "Aún no existe"}</h3>
                                     <p>Categoría más Fuerte</p>
+                                </span>
+
+                            </li>
+                            <li >
+                                <img className="bx" src={calificación}/>
+                                <span className="info">
+                                    <h3>{promedio}</h3>
+                                    <p>Promedio general</p>
                                 </span>
 
                             </li>    
