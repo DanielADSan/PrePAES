@@ -51,36 +51,49 @@ const ChangePassword = () => {
             console.log(id)
             console.log(token)
         }
-        
-
-        if (!form.password != !form.password2) {
+       
+        if(form.password == '' || form.password2 == ''){
             setFormErrorPassword(true); // Establecer el estado de formError a true si algún campo está vacío
-            setFormErrorPasswordMsg('Las contraseñas deben ser iguales')
+            setFormErrorPasswordMsg('Debe ingresar las 2 contraseñas')
             setTimeout(() => {
                 setFormErrorPassword(false);
             }, 2000); // Desaparecer el mensaje después de 2 segundos
             return; // Si falta algún campo, no se envía el formulario
         }
         else{
+            if (form.password != form.password2) {
+                setFormErrorPassword(true); // Establecer el estado de formError a true si algún campo está vacío
+                setFormErrorPasswordMsg('Las contraseñas deben ser iguales')
+                setTimeout(() => {
+                    setFormErrorPassword(false);
+                }, 2000); // Desaparecer el mensaje después de 2 segundos
+                return; // Si falta algún campo, no se envía el formulario
+            }
+            else{
             
-            const url = Apiurl + "api/reset_password/"+String(id)+"/"+String(token)+"/";
-            axios.post(url, form, {
-                "uid":id,
-                "token":token
-            })
-            .then(response => {
-                    console.log(response.data);
-                    setAlert(true);
-                    setalertMsg("Contraseña Cambiada correctamente!");
-                    
-                    setTimeout(() => {
-                        setAlert(false);
-                    }, 2000);
-            })
-            .catch(error => {
-                console.log(error.response.data);
-                });    
+                const url = Apiurl + "api/reset_password/"+String(id)+"/"+String(token)+"/";
+                axios.post(url, form, {
+                    "uid":id,
+                    "token":token
+                })
+                .then(response => {
+                        console.log(response.data);
+                        setAlert(true);
+                        setalertMsg("Contraseña Cambiada correctamente!");
+                        
+                        setTimeout(() => {
+                            setAlert(false);
+                        }, 2000);
+                })
+                .catch(error => {
+                    console.log(error.response.data);
+                    });    
+            }
         }
+        
+
+        
+        
     };
 
     const handleClick = (email) => {
@@ -135,7 +148,7 @@ const ChangePassword = () => {
                             <div className="col-sm-offset-2 ">
                                 <button type="button" className="btn btn-dark mt-2" onClick={manejadorBoton}>Modificar</button>
                                 {formErrorPassword === true && (
-                                        <div className="alert alert-success mt-3" role="alert">
+                                        <div className="alert alert-danger mt-3" role="alert">
                                             {formErrorPasswordMsg}
                                         </div>
                                 )}

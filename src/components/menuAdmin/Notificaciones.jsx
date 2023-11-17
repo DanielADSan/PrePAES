@@ -57,6 +57,26 @@ function Notificaciones() {
         setStateVideos(res.data);
     }
 
+    const manejadorBoton = (id) => {
+       
+        const url = Apiurl + "questions_error/admin/" + id + "/";
+        axios.patch(url, {
+            is_deleted: true
+        },{headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}` // Agrega el token en los headers
+            }
+        }).then(response => {
+           
+            getErrors();
+        });
+    };
+    
+    const getErrors = async () => {
+        const token = localStorage.getItem("token");
+        const res = await axios.get(urlGetError, { headers: { "authorization": `Bearer ${token}` } });
+        setErrors(res.data);
+    };
+
 
     return (
         <>
@@ -88,6 +108,7 @@ function Notificaciones() {
                                         <th>Mensaje</th>
                                         <th>Tipo de error</th>
                                         <th>Id Pregunta</th>
+                                        <th>Opción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,6 +117,9 @@ function Notificaciones() {
                                             <td>{error.message}</td>
                                             <td>{error.type_error}</td>
                                             <td>{error.question}</td>
+                                            <td style={{display:'grid',placeContent:'center'}}>
+                                                <i class='bx bx-list-plus' onClick={()=>manejadorBoton(error.id)}></i>
+                                            </td>   
                                         </tr>
                                     ))}
 
